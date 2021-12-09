@@ -1,0 +1,410 @@
+---
+title: "Modern"
+author: "Jen Baron"
+date: "12/9/2021"
+output: html_document
+---
+
+# Load Packages
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+# Read Data
+
+Polygon data from BEC subzones intersected with PEM aspect (warm/cool).
+
+```{r}
+Columbia_Area <- read.csv("data/BEC_PEM_Columbia.csv")
+Elk_Area <- read.csv("data/BEC_PEM_Elk.csv")
+KootenayN_Area <- read.csv("data/BEC_PEM_Kootenay_North.csv")
+KootenayS_Area <- read.csv("data/BEC_PEM_Kootenay_South.csv")
+Purcell_Area <- read.csv("data/BEC_PEM_Purcell.csv")
+```
+
+Polygon data from BEC subzones intersected with PEM aspect (warm/cool), with non-fuels removed using the BCWS Fire Fuel Types dataset. 
+
+```{r}
+Columbia_Fuel <- read.csv("data/BEC_PEM_Columbia_Fuel.csv")
+Elk_Fuel <- read.csv("data/BEC_PEM_Elk_Fuel.csv")
+KootenayN_Fuel <- read.csv("data/BEC_PEM_Kootenay_North_Fuel.csv")
+KootenayS_Fuel <- read.csv("data/BEC_PEM_Kootenay_South_Fuel.csv")
+Purcell_Fuel <- read.csv("data/BEC_PEM_Purcell_Fuel.csv")
+
+str(Columbia_Fuel)
+```
+
+Fire perimeters intersected with BEC subzone and PEM aspect. Contains BEC information for within fire events. Selecting only fire events after 1940. 
+
+```{r}
+Columbia_Fire <- read.csv("data/BEC_Fire_Columbia.csv") %>%
+  filter(FIRE_YEAR >= 1940, Calculate_Size_Ha > 0, SIZE_HA > 0)
+Elk_Fire <- read.csv("data/BEC_Fire_Elk.csv") %>%
+  filter(FIRE_YEAR >= 1940, Calculate_Size_Ha > 0, SIZE_HA > 0)
+KootenayN_Fire <- read.csv("data/BEC_Fire_Kootenay_North.csv") %>%
+  filter(FIRE_YEAR >= 1940, Calculate_Size_Ha > 0, SIZE_HA > 0)
+KootenayS_Fire <- read.csv("data/BEC_Fire_Kootenay_South.csv") %>%
+  filter(FIRE_YEAR >= 1940)
+Purcell_Fire <- read.csv("data/BEC_Fire_Purcell.csv") %>%
+  filter(FIRE_YEAR >= 1940, Calculate_Size_Ha > 0, SIZE_HA > 0)
+```
+
+# Calculate Fire Attributes
+
+## Subzone & Aspect
+
+Most fire events occur across multiple BEC subzones. The original fire size characterizes fire across multiple zones. I also calculated the area of the fire within each BEC subzone which is described by the BEC summaries (as opposed to the original sizes)
+
+```{r}
+Columbia_Modern <- Columbia_Fire %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+Elk_Modern <- Elk_Fire %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), 
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+KootenayN_Modern <- KootenayN_Fire %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+KootenayS_Modern <- KootenayS_Fire %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+Purcell_Modern <- Purcell_Fire %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+```
+### Fire Return Interval
+
+This is technically calculated as a fire rotation period, since there generally aren't enough fire events for there to be a fire return interval (i.e., multiple fire events)
+
+Calculate flammable area in each BEC subzone/aspect for FRI calculation
+```{r}
+Columbia_Fuel_Area <- Columbia_Fuel %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+Elk_Fuel_Area <- Elk_Fuel %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+KootenayN_Fuel_Area <- KootenayN_Fuel %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+KootenayS_Fuel_Area <- KootenayS_Fuel %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+Purcell_Fuel_Area <- Purcell_Fuel %>% 
+  group_by(MAP_LABEL, fire_group) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+```
+$FRI = \frac {(Year_2 - Year_1)} {\frac{Area Burned} {Total Area}}$
+
+```{r}
+years = (2020-1940+1) # Time period for fire events
+
+Columbia_Modern <- full_join(Columbia_Modern, Columbia_Fuel_Area) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Columbia")
+Elk_Modern <- full_join(Elk_Modern, Elk_Fuel_Area) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+          Region = "Elk")
+KootenayN_Modern <- full_join(KootenayN_Modern, KootenayN_Fuel_Area) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Kootenay North")
+KootenayS_Modern <- full_join(KootenayS_Modern, KootenayS_Fuel_Area) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Kootenay South")
+Purcell_Modern <- full_join(Purcell_Modern, Purcell_Fuel_Area) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Purcell")
+```
+
+```{r}
+Modern <- rbind(Columbia_Modern, Elk_Modern, KootenayN_Modern, KootenayS_Modern, Purcell_Modern)
+```
+ 
+### Visualize
+
+```{r}
+ggplot(data=Modern, aes(x=MAP_LABEL, y=number_fires)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  labs(x = "") +
+  facet_grid(Region~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern, aes(x=MAP_LABEL, y=mean_fs)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  labs(x = "") +
+  facet_grid(Region~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern, aes(x=MAP_LABEL, y=mean_fs_BEC)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  facet_grid(Region~., scales="free_y") +  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern, aes(x=MAP_LABEL, y=min_fs_BEC)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  facet_grid(Region~., scales="free_y") +  
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern, aes(x=MAP_LABEL, y=max_fs_BEC)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  facet_grid(Region~., scales="free_y") +
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern, aes(x=MAP_LABEL, y=FRI.percent)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  facet_grid(Region~., scales="free_y") +
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern, aes(x=MAP_LABEL, y=FRI)) +
+  geom_col(stat="identity", position = "dodge", aes(fill=fire_group)) +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  facet_grid(Region~., scales="free_y") +
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+## Subzone
+
+```{r}
+Columbia_Modern2 <- Columbia_Fire %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+Elk_Modern2 <- Elk_Fire %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), 
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+KootenayN_Modern2 <- KootenayN_Fire %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), 
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+KootenayS_Modern2 <- KootenayS_Fire %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), 
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+Purcell_Modern2 <- Purcell_Fire %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(number_fires = n_distinct(FIRELABEL), 
+            mean_fs = mean(SIZE_HA) %>% round(2), 
+            mean_fs_BEC = mean(Calculate_Size_Ha) %>% round(2),
+            min_fs = min(SIZE_HA) %>% round(2),
+            min_fs_BEC = min(Calculate_Size_Ha) %>% round(2),
+            max_fs = max(SIZE_HA) %>% round(2),
+            max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
+            area_burned = sum(SIZE_HA) %>% round(2),
+            area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
+```
+
+
+### Fire Return Interval
+
+Calculate flammable area in each BEC subzone for FRI calculation
+
+```{r}
+Columbia_Fuel_Area2 <- Columbia_Fuel %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+Elk_Fuel_Area2 <- Elk_Fuel %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+KootenayN_Fuel_Area2 <- KootenayN_Fuel %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+KootenayS_Fuel_Area2 <- KootenayS_Fuel %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+Purcell_Fuel_Area2 <- Purcell_Fuel %>% 
+  group_by(MAP_LABEL) %>%
+  summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
+```
+
+$FRI = \frac {(Year_2 - Year_1)} {\frac{Area Burned} {Total Area}}$
+
+```{r}
+years = (2020-1940+1) # Time period for fire events
+
+Columbia_Modern2 <- full_join(Columbia_Modern2, Columbia_Fuel_Area2) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Columbia")
+Elk_Modern2 <- full_join(Elk_Modern2, Elk_Fuel_Area2) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+          Region = "Elk")
+KootenayN_Modern2 <- full_join(KootenayN_Modern2, KootenayN_Fuel_Area2) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Kootenay North")
+KootenayS_Modern2 <- full_join(KootenayS_Modern2, KootenayS_Fuel_Area2) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Kootenay South")
+Purcell_Modern2 <- full_join(Purcell_Modern2, Purcell_Fuel_Area2) %>%
+  mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
+         FRI = years / (area_burned_BEC/total_area) %>% round(2),
+         Region = "Purcell")
+```
+
+```{r}
+Modern2 <- rbind(Columbia_Modern2, Elk_Modern2, KootenayN_Modern2, KootenayS_Modern2, Purcell_Modern2)
+```
+
+### Visualize
+
+```{r}
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=number_fires)) +
+  geom_col(stat="identity", position = "dodge") +
+  labs(x = "") +
+  facet_grid(Region~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=mean_fs)) +
+  geom_col(stat="identity", position = "dodge") +
+  labs(x = "") +
+  facet_grid(Region~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=mean_fs_BEC)) +
+  geom_col(stat="identity", position = "dodge") +
+  facet_grid(Region~., scales="free_y") +  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=min_fs_BEC)) +
+  geom_col(stat="identity", position = "dodge") +
+  facet_grid(Region~., scales="free_y") +  
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=max_fs_BEC)) +
+  geom_col(stat="identity", position = "dodge") +
+  facet_grid(Region~., scales="free_y") +
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=FRI.percent)) +
+  geom_col(stat="identity", position = "dodge") +
+  facet_grid(Region~., scales="free_y") +
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=Modern2, aes(x=MAP_LABEL, y=FRI)) +
+  geom_col(stat="identity", position = "dodge") +
+  scale_fill_manual(values=c("lightpink2", "lightblue2")) +
+  facet_grid(Region~., scales="free_y") +
+  labs(x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+# Save Outputs
+
+```{r}
+write.csv(Modern, "outputs/modern_subzone_aspect.csv")
+write.csv(Modern2, "outputs/modern_subzone.csv")
+```
+
+
+# Reproducibility
+
+```{r}
+Sys.time()
+git2r::repository()
+sessionInfo()
+```
