@@ -1,0 +1,249 @@
+---
+title: "Comparison (Modern & Historical)"
+author: "Jen Baron"
+date: "December 15, 2021"
+output:
+  html_document:
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+---
+
+# Load Packages
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+# Read Data
+
+```{r}
+modern <- read.csv("outputs/modern.csv") %>%
+  select(-X) %>%
+  mutate(Time = "Modern") %>%
+  relocate(Time) %>%
+  mutate_if(is.character,as.factor) 
+historical <- read.csv("data/BEC_HNFR_Tidy.csv") %>%
+  mutate(Time = "Historical") %>%
+  relocate(Time) %>%
+  mutate_if(is.character,as.factor)
+```
+
+# Tidy Data
+
+```{r}
+compare_wide <- full_join(historical, modern, by = c("Zone", "Region_Name", "Aspect"),
+                    suffix = c(".H", ".M"),) %>%
+  select(Zone, Region_Name, Aspect,
+           mean_fs_BEC.H, mean_fs_BEC.M,
+           mean_fs_BEC.aspect.H, mean_fs_BEC.aspect.M,
+           min_fs_BEC.H, min_fs_BEC.M,
+           min_fs_BEC.aspect.H, min_fs_BEC.aspect.M,
+           max_fs_BEC.H, max_fs_BEC.M,
+           max_fs_BEC.aspect.H, max_fs_BEC.aspect.M,
+           FRI.H, FRI.M,
+           FRI.aspect.H, FRI.aspect.M) %>%
+  relocate(Zone, Region_Name, Aspect,
+           mean_fs_BEC.H, mean_fs_BEC.M,
+           mean_fs_BEC.aspect.H, mean_fs_BEC.aspect.M,
+           min_fs_BEC.H, min_fs_BEC.M,
+           min_fs_BEC.aspect.H, min_fs_BEC.aspect.M,
+           max_fs_BEC.H, max_fs_BEC.M,
+           max_fs_BEC.aspect.H, max_fs_BEC.aspect.M,
+           FRI.H, FRI.M,
+           FRI.aspect.H, FRI.aspect.M)
+```
+
+```{r}
+compare_tidy <- full_join(historical, modern) %>%
+  select("Time", "Zone", "Region_Name", "Aspect", 
+         "mean_fs_BEC", "mean_fs_BEC.aspect", "min_fs_BEC", 
+         "min_fs_BEC.aspect", "max_fs_BEC", "max_fs_BEC.aspect", 
+         "FRI", "FRI.aspect") 
+```
+```{r}
+subzone.summary <- compare_tidy %>%
+  group_by(Time, Zone) %>%
+  summarize(mean_fs = mean(mean_fs_BEC),
+            min_fs = mean(min_fs_BEC),
+            max_fs = mean(max_fs_BEC),
+            FRI = mean(FRI)) %>%
+  arrange(Zone) %>%
+  mutate_if(is.numeric, round, 0)
+
+subzone.aspect.summary <- compare_tidy %>%
+  group_by(Time, Zone, Aspect) %>%
+  summarize(mean_fs = mean(mean_fs_BEC.aspect),
+            min_fs = mean(min_fs_BEC.aspect),
+            max_fs = mean(max_fs_BEC.aspect),
+            FRI = mean(FRI)) %>%
+  arrange(Zone, Aspect) %>%
+  mutate_if(is.numeric, round, 0)
+```
+
+
+
+# Visualize
+
+## Subzone
+
+```{r}
+ggplot(data=(compare_tidy %>% na.omit(mean_fs_BEC)), 
+       aes(x=reorder(Region_Name, -mean_fs_BEC), y=mean_fs_BEC)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC)), 
+       aes(x=reorder(Region_Name, -min_fs_BEC), y=min_fs_BEC)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=(compare_tidy %>% na.omit(max_fs_BEC)), 
+       aes(x=reorder(Region_Name, -max_fs_BEC), y=max_fs_BEC)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=(compare_tidy %>% na.omit(FRI)), 
+       aes(x=reorder(Region_Name, -FRI), y=FRI)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~., scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+ggplot(data = compare_tidy, aes(x=Zone, y =mean_fs_BEC, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  theme_bw()
+
+ggplot(data = compare_tidy, aes(x=Zone, y =min_fs_BEC, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  theme_bw()
+
+ggplot(data = compare_tidy, aes(x=Zone, y =max_fs_BEC, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  theme_bw()
+
+ggplot(data = compare_tidy, aes(x=Zone, y =FRI, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  theme_bw()
+```
+
+## Subzone & Aspect
+
+```{r}
+ggplot(data=(compare_tidy %>% na.omit(mean_fs_BEC.aspect)), 
+       aes(x=reorder(Region_Name, -mean_fs_BEC.aspect), y=mean_fs_BEC.aspect)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC.aspect)), 
+       aes(x=reorder(Region_Name, -min_fs_BEC.aspect), y=min_fs_BEC.aspect)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=(compare_tidy %>% na.omit(max_fs_BEC.aspect)), 
+       aes(x=reorder(Region_Name, -max_fs_BEC.aspect), y=max_fs_BEC.aspect)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data=(compare_tidy %>% na.omit(FRI.aspect)), 
+       aes(x=reorder(Region_Name, -FRI.aspect), y=FRI.aspect)) +
+  geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(x = "") +
+  facet_grid(Zone~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+ggplot(data = compare_tidy, aes(x=Zone, y =mean_fs_BEC.aspect, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  facet_grid(.~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = compare_tidy, aes(x=Zone, y =min_fs_BEC.aspect, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  facet_grid(.~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = compare_tidy, aes(x=Zone, y =max_fs_BEC.aspect, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  facet_grid(.~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = compare_tidy, aes(x=Zone, y =FRI.aspect, fill=Time)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  facet_grid(.~Aspect, scales="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+
+ 
+# Save Outputs
+
+```{r}
+write.csv(compare_wide, "outputs/compare_wide.csv")
+write.csv(compare_tidy, "outputs/compare_tidy.csv")
+write.csv(subzone.summary, "outputs/subzone_summary.csv")
+write.csv(subzone.aspect.summary, "outputs/subzone_summary_aspect.csv")
+```
+
+
+
+# Reproducibility
+
+```{r}
+Sys.time()
+git2r::repository()
+sessionInfo()
+```

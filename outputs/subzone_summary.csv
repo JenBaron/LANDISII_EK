@@ -1,0 +1,11 @@
+"","Time","Zone","mean_fs","min_fs","max_fs","FRI"
+"1","Historical","Columbia",51,8,2420,222
+"2","Modern","Columbia",57,1,396,Inf
+"3","Historical","Elk",68,9,2583,266
+"4","Modern","Elk",103,1,1952,597
+"5","Historical","Kootenay North",69,9,2714,246
+"6","Modern","Kootenay North",126,4,1894,Inf
+"7","Historical","Kootenay South",47,8,2655,190
+"8","Modern","Kootenay South",87,2,1413,Inf
+"9","Historical","Purcell",76,9,2500,257
+"10","Modern","Purcell",108,3,491,2451

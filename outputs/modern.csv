@@ -1,0 +1,167 @@
+"","Zone","Region_Name","Aspect","number_fires","number_fires.aspect","mean_fs_BEC","mean_fs_BEC.aspect","min_fs_BEC","min_fs_BEC.aspect","max_fs_BEC","max_fs_BEC.aspect","FRI","FRI.aspect"
+"1","Columbia","ESSFdk1","cool",2,2,128,3,10,2,246,5,165,540
+"2","Columbia","ESSFdk1","warm",2,2,128,123,10,5,246,242,165,150
+"3","Columbia","ESSFdk2","cool",14,12,40,10,0,0,274,62,4050,2700
+"4","Columbia","ESSFdk2","warm",14,13,40,31,0,0,274,207,4050,4050
+"5","Columbia","ESSFdkp","cool",6,6,9,9,0,0,23,23,2700,2700
+"6","Columbia","ESSFdkp","warm",6,2,9,0,0,0,23,0,2700,Inf
+"7","Columbia","ESSFdkw","cool",8,7,25,13,0,1,118,41,4050,4050
+"8","Columbia","ESSFdkw","warm",8,7,25,11,0,0,118,75,4050,2700
+"9","Columbia","ESSFmmp","cool",3,3,0,0,0,0,0,0,Inf,Inf
+"10","Columbia","ESSFmmp","warm",3,1,0,0,0,0,0,0,Inf,Inf
+"11","Columbia","ESSFmmw","cool",1,1,0,0,0,0,0,0,Inf,Inf
+"12","Columbia","ESSFmmw","warm",1,1,0,0,0,0,0,0,Inf,Inf
+"13","Columbia","ICHmk5","cool",7,7,55,21,1,0,198,78,4050,8100
+"14","Columbia","ICHmk5","warm",7,5,55,32,1,0,198,132,4050,2700
+"15","Columbia","IDFdk5","cool",24,22,62,18,0,0,613,388,2025,2700
+"16","Columbia","IDFdk5","warm",24,17,62,56,0,0,613,550,2025,1620
+"17","Columbia","IDFdm2","cool",7,6,37,4,0,0,261,14,1012,1012
+"18","Columbia","IDFdm2","warm",7,7,37,31,0,0,261,238,1012,1157
+"19","Columbia","IDFxk","cool",16,13,103,30,0,0,1753,510,810,736
+"20","Columbia","IDFxk","warm",16,15,103,72,0,0,1753,1166,810,810
+"21","Columbia","IMAun","cool",1,1,11,11,11,11,11,11,198,193
+"22","Columbia","MSdk","cool",19,19,122,87,0,0,892,715,1620,2025
+"23","Columbia","MSdk","warm",19,12,122,49,0,0,892,263,1620,1157
+"24","Columbia","MSdw","cool",4,4,120,117,1,1,566,549,253,245
+"25","Columbia","MSdw","warm",4,4,120,5,1,0,566,17,253,623
+"26","Columbia","ESSFmm3","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"27","Columbia","ESSFmm3","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"28","Columbia","ICHmw1","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"29","Columbia","ICHmw1","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"30","Columbia","IMAun","warm",1,NA,11,NA,11,NA,11,NA,198,NA
+"31","Elk","ESSFdk1","cool",45,45,209,179,0,0,10508,10015,476,476
+"32","Elk","ESSFdk1","warm",45,37,209,14,0,0,10508,487,476,405
+"33","Elk","ESSFdk2","cool",23,23,186,86,0,0,3951,2097,450,476
+"34","Elk","ESSFdk2","warm",23,21,186,46,0,0,3951,557,450,300
+"35","Elk","ESSFdkp","cool",29,29,28,27,0,0,226,223,386,386
+"36","Elk","ESSFdkp","warm",29,16,28,0,0,0,226,2,386,736
+"37","Elk","ESSFdkw","cool",48,48,62,30,0,0,1162,544,579,579
+"38","Elk","ESSFdkw","warm",48,44,62,24,0,0,1162,627,579,579
+"39","Elk","ESSFwm1","cool",21,21,213,105,0,0,1440,1094,368,386
+"40","Elk","ESSFwm1","warm",21,21,213,44,0,0,1440,337,368,338
+"41","Elk","ESSFwmp","cool",6,6,22,21,2,0,65,64,219,198
+"42","Elk","ESSFwmp","warm",6,5,22,2,2,0,65,5,219,540
+"43","Elk","ESSFwmw","cool",16,16,89,43,0,0,1133,792,312,279
+"44","Elk","ESSFwmw","warm",16,16,89,28,0,0,1133,311,312,386
+"45","Elk","ICHdm","cool",2,2,41,29,4,0,79,70,1620,2025
+"46","Elk","ICHdm","warm",2,2,41,6,4,5,79,9,1620,1012
+"47","Elk","ICHmk4","cool",16,16,165,51,0,0,1108,739,810,1012
+"48","Elk","ICHmk4","warm",16,15,165,98,0,0,1108,522,810,623
+"49","Elk","IMAun","cool",7,7,12,8,2,0,42,42,57,62
+"50","Elk","IMAun","warm",7,4,12,1,2,0,42,3,57,NA
+"51","Elk","MSdk","cool",22,22,74,53,0,0,1110,1034,810,810
+"52","Elk","MSdk","warm",22,15,74,7,0,0,1110,76,810,736
+"53","Elk","MSdw","cool",50,50,92,71,0,0,1644,1496,810,810
+"54","Elk","MSdw","warm",50,42,92,11,0,0,1644,142,810,1012
+"55","Elk","IDFdm2","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"56","Elk","IDFdm2","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"57","Kootenay North","ESSFdk1","cool",3,3,168,14,7,0,612,152,312,368
+"58","Kootenay North","ESSFdk1","warm",3,3,168,134,7,5,612,446,312,300
+"59","Kootenay North","ESSFdk2","cool",55,50,429,93,0,0,11078,3403,193,208
+"60","Kootenay North","ESSFdk2","warm",55,55,429,287,0,0,11078,5906,193,188
+"61","Kootenay North","ESSFdkp","cool",27,27,38,36,0,0,315,279,289,289
+"62","Kootenay North","ESSFdkp","warm",27,9,38,2,0,0,315,11,289,202
+"63","Kootenay North","ESSFdkw","cool",38,38,147,109,0,0,1706,1477,261,261
+"64","Kootenay North","ESSFdkw","warm",38,34,147,14,0,0,1706,139,261,279
+"65","Kootenay North","ESSFwm1","cool",2,2,118,51,28,0,205,185,123,123
+"66","Kootenay North","ESSFwm1","warm",2,2,118,16,28,11,205,28,123,123
+"67","Kootenay North","ESSFwmp","cool",2,2,19,18,0,0,60,60,300,279
+"68","Kootenay North","ESSFwmp","warm",2,2,19,0,0,0,60,0,300,8100
+"69","Kootenay North","ESSFwmw","cool",2,2,70,28,3,0,168,89,135,129
+"70","Kootenay North","ESSFwmw","warm",2,2,70,26,3,0,168,78,135,147
+"71","Kootenay North","ICHmk5","cool",6,6,119,74,7,0,495,432,540,540
+"72","Kootenay North","ICHmk5","warm",6,6,119,23,7,0,495,63,540,675
+"73","Kootenay North","IDFdm2","cool",2,2,5,3,3,3,6,3,Inf,Inf
+"74","Kootenay North","IDFdm2","warm",2,1,5,3,3,3,6,3,Inf,Inf
+"75","Kootenay North","IMAun","cool",11,11,19,15,0,0,177,146,176,193
+"76","Kootenay North","IMAun","warm",11,6,19,4,0,0,177,31,176,63
+"77","Kootenay North","MSdk","cool",39,38,292,258,0,0,7633,7523,324,300
+"78","Kootenay North","MSdk","warm",39,28,292,10,0,0,7633,118,324,1157
+"79","Kootenay North","MSdw","cool",4,4,88,52,0,0,272,268,810,736
+"80","Kootenay North","MSdw","warm",4,4,88,1,0,0,272,5,810,4050
+"81","Kootenay South","ESSFdk1","cool",53,53,191,123,0,0,3393,3293,352,368
+"82","Kootenay South","ESSFdk1","warm",53,37,191,68,0,0,3393,1620,352,300
+"83","Kootenay South","ESSFdk2","cool",6,6,81,40,0,0,375,335,476,476
+"84","Kootenay South","ESSFdk2","warm",6,5,81,25,0,0,375,120,476,450
+"85","Kootenay South","ESSFdkp","cool",6,6,7,7,0,0,33,33,4050,4050
+"86","Kootenay South","ESSFdkw","cool",21,21,58,30,0,0,341,339,1012,1012
+"87","Kootenay South","ESSFdkw","warm",21,16,58,22,0,0,341,96,1012,810
+"88","Kootenay South","ESSFwh2","cool",10,10,121,67,0,0,1515,1167,368,368
+"89","Kootenay South","ESSFwh2","warm",10,8,121,34,0,0,1515,340,368,352
+"90","Kootenay South","ESSFwm1","cool",10,10,73,40,6,0,434,267,540,579
+"91","Kootenay South","ESSFwm1","warm",10,10,73,17,6,0,434,155,540,476
+"92","Kootenay South","ESSFwm2","cool",19,19,130,64,0,0,2760,2039,476,450
+"93","Kootenay South","ESSFwm2","warm",19,18,130,33,0,0,2760,702,476,476
+"94","Kootenay South","ESSFwm4","cool",63,62,202,80,0,0,6075,3734,300,300
+"95","Kootenay South","ESSFwm4","warm",63,62,202,79,0,0,6075,2253,300,289
+"96","Kootenay South","ESSFwmp","cool",15,15,25,20,0,0,211,210,1620,1620
+"97","Kootenay South","ESSFwmp","warm",15,9,25,2,0,0,211,15,1620,1350
+"98","Kootenay South","ESSFwmw","cool",42,42,53,21,0,0,1040,685,736,810
+"99","Kootenay South","ESSFwmw","warm",42,37,53,23,0,0,1040,348,736,736
+"100","Kootenay South","ICHdm","cool",80,80,113,103,0,0,1643,1587,405,405
+"101","Kootenay South","ICHdm","warm",80,52,113,5,0,0,1643,83,405,352
+"102","Kootenay South","ICHdw1","cool",12,12,103,101,0,0,703,700,1157,1012
+"103","Kootenay South","ICHdw1","warm",12,7,103,4,0,0,703,12,1157,2700
+"104","Kootenay South","ICHmk4","cool",6,6,162,52,1,0,480,282,324,386
+"105","Kootenay South","ICHmk4","warm",6,6,162,81,1,0,480,233,324,279
+"106","Kootenay South","ICHmw2","cool",2,2,1,1,0,0,2,2,Inf,Inf
+"107","Kootenay South","ICHxw","cool",2,2,5,5,3,3,7,7,8100,8100
+"108","Kootenay South","IDFdm2","cool",88,81,55,28,0,0,1189,505,2025,2700
+"109","Kootenay South","IDFdm2","warm",88,71,55,27,0,0,1189,1061,2025,1157
+"110","Kootenay South","IDFxk","cool",1,1,8,1,4,1,12,2,81,81
+"111","Kootenay South","IDFxk","warm",1,1,8,7,4,4,12,10,81,81
+"112","Kootenay South","IDFxx2","cool",122,122,31,22,0,0,455,413,900,900
+"113","Kootenay South","IDFxx2","warm",122,84,31,7,0,0,455,69,900,736
+"114","Kootenay South","MSdk","cool",2,2,28,12,17,0,39,32,1620,1350
+"115","Kootenay South","MSdk","warm",2,2,28,4,17,2,39,6,1620,2025
+"116","Kootenay South","MSdw","cool",65,65,165,123,0,0,5446,5216,405,405
+"117","Kootenay South","MSdw","warm",65,51,165,21,0,0,5446,290,405,476
+"118","Kootenay South","ESSFdkp","warm",6,NA,7,NA,0,NA,33,NA,4050,NA
+"119","Kootenay South","ICHmw2","warm",2,NA,1,NA,0,NA,2,NA,Inf,NA
+"120","Kootenay South","ICHxw","warm",2,NA,5,NA,3,NA,7,NA,8100,NA
+"121","Kootenay South","IMAun","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"122","Kootenay South","IMAun","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"123","Purcell","ESSFdk1","cool",6,4,414,47,1,0,1355,231,231,352
+"124","Purcell","ESSFdk1","warm",6,6,414,356,1,1,1355,1102,231,213
+"125","Purcell","ESSFdk2","cool",27,26,122,38,0,0,1002,342,1350,1350
+"126","Purcell","ESSFdk2","warm",27,22,122,93,0,0,1002,736,1350,1350
+"127","Purcell","ESSFdkp","cool",11,11,18,17,0,0,96,88,4050,4050
+"128","Purcell","ESSFdkp","warm",11,2,18,2,0,0,96,4,4050,4050
+"129","Purcell","ESSFdkw","cool",18,17,45,39,0,0,467,300,2700,2700
+"130","Purcell","ESSFdkw","warm",18,13,45,4,0,0,467,17,2700,4050
+"131","Purcell","ESSFmm3","cool",12,12,110,77,0,0,622,516,1620,1350
+"132","Purcell","ESSFmm3","warm",12,8,110,30,0,2,622,124,1620,1620
+"133","Purcell","ESSFmmp","cool",4,4,26,16,0,0,69,69,8100,4050
+"134","Purcell","ESSFmmp","warm",4,1,26,25,0,25,69,25,8100,8100
+"135","Purcell","ESSFmmw","cool",5,5,66,43,3,0,166,163,4050,4050
+"136","Purcell","ESSFmmw","warm",5,3,66,13,3,1,166,23,4050,4050
+"137","Purcell","ESSFwh2","cool",13,13,25,16,0,0,89,88,1620,1620
+"138","Purcell","ESSFwh2","warm",13,12,25,8,0,0,89,60,1620,1620
+"139","Purcell","ESSFwm2","cool",16,15,55,26,0,0,208,119,2025,2025
+"140","Purcell","ESSFwm2","warm",16,15,55,23,0,0,208,104,2025,2025
+"141","Purcell","ESSFwmp","cool",4,4,12,12,0,0,29,28,8100,8100
+"142","Purcell","ESSFwmp","warm",4,2,12,0,0,0,29,0,8100,Inf
+"143","Purcell","ESSFwmw","cool",10,10,26,12,1,0,105,71,4050,4050
+"144","Purcell","ESSFwmw","warm",10,10,26,9,1,0,105,51,4050,2700
+"145","Purcell","ICHdm","cool",8,8,63,55,0,0,416,412,405,405
+"146","Purcell","ICHdm","warm",8,7,63,3,0,0,416,16,405,253
+"147","Purcell","ICHmk5","cool",1,1,74,74,74,74,74,74,4050,4050
+"148","Purcell","ICHmw2","cool",2,2,42,40,24,20,61,60,2700,2700
+"149","Purcell","ICHmw2","warm",2,2,42,2,24,1,61,3,2700,8100
+"150","Purcell","IDFdk5","cool",3,3,70,4,1,0,346,16,1620,2700
+"151","Purcell","IDFdk5","warm",3,3,70,55,1,0,346,323,1620,1620
+"152","Purcell","IDFdm2","cool",6,4,275,31,0,0,1779,189,213,225
+"153","Purcell","IDFdm2","warm",6,6,275,228,0,0,1779,1586,213,213
+"154","Purcell","IDFxk","cool",1,1,11,5,0,0,23,11,81,81
+"155","Purcell","IDFxk","warm",1,1,11,6,0,0,23,11,81,81
+"156","Purcell","IMAun","cool",4,4,10,5,0,0,34,21,1620,2025
+"157","Purcell","IMAun","warm",4,3,10,5,0,0,34,14,1620,231
+"158","Purcell","MSdk","cool",20,20,94,83,0,0,638,536,1012,1012
+"159","Purcell","MSdk","warm",20,16,94,9,0,0,638,98,1012,1012
+"160","Purcell","MSdw","cool",3,3,586,423,1,1,2033,1694,231,231
+"161","Purcell","MSdw","warm",3,2,586,15,1,0,2033,116,231,253
+"162","Purcell","ESSFwcp","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"163","Purcell","ESSFwcp","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"164","Purcell","ESSFwcw","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"165","Purcell","ESSFwcw","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"166","Purcell","ICHmk5","warm",1,NA,74,NA,74,NA,74,NA,4050,NA

@@ -1,0 +1,21 @@
+"","Time","Zone","Aspect","mean_fs","min_fs","max_fs","FRI"
+"1","Historical","Columbia","cool",47,1,205,222
+"2","Modern","Columbia","cool",25,1,184,Inf
+"3","Historical","Columbia","warm",55,3,690,222
+"4","Modern","Columbia","warm",34,0,241,Inf
+"5","Historical","Elk","cool",34,0,523,266
+"6","Modern","Elk","cool",59,0,1518,575
+"7","Historical","Elk","warm",52,2,2350,266
+"8","Modern","Elk","warm",25,0,280,622
+"9","Historical","Kootenay North","cool",60,1,571,246
+"10","Modern","Kootenay North","cool",63,0,1168,Inf
+"11","Historical","Kootenay North","warm",77,3,2571,246
+"12","Modern","Kootenay North","warm",43,2,569,Inf
+"13","Historical","Kootenay South","cool",28,1,186,190
+"14","Modern","Kootenay South","cool",47,0,1042,Inf
+"15","Historical","Kootenay South","warm",36,3,300,190
+"16","Modern","Kootenay South","warm",27,0,436,753
+"17","Historical","Purcell","cool",40,1,455,257
+"18","Modern","Purcell","cool",53,5,251,2491
+"19","Historical","Purcell","warm",60,3,1775,257
+"20","Modern","Purcell","warm",47,2,232,2409
