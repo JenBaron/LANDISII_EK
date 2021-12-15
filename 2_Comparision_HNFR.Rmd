@@ -72,6 +72,7 @@ subzone.summary <- compare_tidy %>%
             FRI = mean(FRI)) %>%
   arrange(Zone) %>%
   mutate_if(is.numeric, round, 0)
+subzone.summary
 
 subzone.aspect.summary <- compare_tidy %>%
   group_by(Time, Zone, Aspect) %>%
@@ -81,9 +82,8 @@ subzone.aspect.summary <- compare_tidy %>%
             FRI = mean(FRI)) %>%
   arrange(Zone, Aspect) %>%
   mutate_if(is.numeric, round, 0)
+subzone.aspect.summary
 ```
-
-
 
 # Visualize
 
