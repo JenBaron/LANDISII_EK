@@ -57,7 +57,7 @@ historical <- read.csv("data/BEC_HNFR_Tidy.csv") %>%
 
 
 ```r
-compare_wide <- full_join(historical, modern, by = c("Zone", "Region_Name", "Aspect"),
+compare_wide <- left_join(historical, modern, by = c("Zone", "Region_Name", "Aspect"),
                     suffix = c(".H", ".M"),) %>%
   select(Zone, Region_Name, Aspect,
            mean_fs_BEC.H, mean_fs_BEC.M,
@@ -95,6 +95,7 @@ compare_tidy <- full_join(historical, modern) %>%
 ```r
 subzone.summary <- compare_tidy %>%
   group_by(Time, Zone) %>%
+  na.omit() %>%
   summarize(mean_fs = mean(mean_fs_BEC),
             min_fs = mean(min_fs_BEC),
             max_fs = mean(max_fs_BEC),
@@ -113,8 +114,30 @@ subzone.summary <- compare_tidy %>%
 ```
 
 ```r
+subzone.summary
+```
+
+```
+## # A tibble: 10 x 6
+## # Groups:   Time [2]
+##    Time       Zone           mean_fs min_fs max_fs   FRI
+##    <fct>      <fct>            <dbl>  <dbl>  <dbl> <dbl>
+##  1 Historical Columbia            51      8   2420   222
+##  2 Modern     Columbia            57      1    396   Inf
+##  3 Historical Elk                 68      9   2583   266
+##  4 Modern     Elk                103      1   1952   597
+##  5 Historical Kootenay North      69      9   2714   246
+##  6 Modern     Kootenay North     126      4   1894   Inf
+##  7 Historical Kootenay South      47      8   2655   190
+##  8 Modern     Kootenay South      87      2   1413   Inf
+##  9 Historical Purcell             76      9   2500   257
+## 10 Modern     Purcell            108      3    491  2451
+```
+
+```r
 subzone.aspect.summary <- compare_tidy %>%
   group_by(Time, Zone, Aspect) %>%
+  na.omit() %>%
   summarize(mean_fs = mean(mean_fs_BEC.aspect),
             min_fs = mean(min_fs_BEC.aspect),
             max_fs = mean(max_fs_BEC.aspect),
@@ -132,7 +155,36 @@ subzone.aspect.summary <- compare_tidy %>%
 ## Columns `Time`, `Zone`
 ```
 
+```r
+subzone.aspect.summary
+```
 
+```
+## # A tibble: 20 x 7
+## # Groups:   Time, Zone [10]
+##    Time       Zone           Aspect mean_fs min_fs max_fs   FRI
+##    <fct>      <fct>          <fct>    <dbl>  <dbl>  <dbl> <dbl>
+##  1 Historical Columbia       cool        47      1    205   222
+##  2 Modern     Columbia       cool        25      1    184   Inf
+##  3 Historical Columbia       warm        55      3    690   222
+##  4 Modern     Columbia       warm        34      0    241   Inf
+##  5 Historical Elk            cool        34      0    523   266
+##  6 Modern     Elk            cool        59      0   1518   575
+##  7 Historical Elk            warm        52      2   2350   266
+##  8 Modern     Elk            warm        25      0    280   622
+##  9 Historical Kootenay North cool        60      1    571   246
+## 10 Modern     Kootenay North cool        63      0   1168   Inf
+## 11 Historical Kootenay North warm        77      3   2571   246
+## 12 Modern     Kootenay North warm        43      2    569   Inf
+## 13 Historical Kootenay South cool        28      1    186   190
+## 14 Modern     Kootenay South cool        47      0   1042   Inf
+## 15 Historical Kootenay South warm        36      3    300   190
+## 16 Modern     Kootenay South warm        27      0    436   753
+## 17 Historical Purcell        cool        40      1    455   257
+## 18 Modern     Purcell        cool        53      5    251  2491
+## 19 Historical Purcell        warm        60      3   1775   257
+## 20 Modern     Purcell        warm        47      2    232  2409
+```
 
 # Visualize
 
@@ -446,7 +498,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2021-12-15 14:48:39 PST"
+## [1] "2021-12-16 16:15:41 PST"
 ```
 
 ```r
@@ -456,7 +508,7 @@ git2r::repository()
 ```
 ## Local:    main C:/Users/jenbaron/Documents/UBC/Research/PhD Thesis/Collaborations/LANDIS II/Analysis/LANDISII_EK
 ## Remote:   main @ origin (https://github.com/JenBaron/LANDISII_EK.git)
-## Head:     [335392f] 2021-12-09: delete modern
+## Head:     [95a5cd3] 2021-12-15: display summaries
 ```
 
 ```r
@@ -487,12 +539,13 @@ sessionInfo()
 ##  [1] git2r_0.29.0     highr_0.9        pillar_1.6.4     bslib_0.3.1     
 ##  [5] compiler_4.1.2   jquerylib_0.1.4  tools_4.1.2      digest_0.6.28   
 ##  [9] jsonlite_1.7.2   evaluate_0.14    lifecycle_1.0.1  tibble_3.1.6    
-## [13] gtable_0.3.0     pkgconfig_2.0.3  rlang_0.4.12     DBI_1.1.1       
-## [17] yaml_2.2.1       xfun_0.28        fastmap_1.1.0    withr_2.4.2     
-## [21] stringr_1.4.0    knitr_1.36       generics_0.1.1   vctrs_0.3.8     
-## [25] sass_0.4.0       grid_4.1.2       tidyselect_1.1.1 glue_1.5.0      
-## [29] R6_2.5.1         fansi_0.5.0      rmarkdown_2.11   farver_2.1.0    
-## [33] purrr_0.3.4      magrittr_2.0.1   scales_1.1.1     ellipsis_0.3.2  
-## [37] htmltools_0.5.2  assertthat_0.2.1 colorspace_2.0-2 labeling_0.4.2  
-## [41] utf8_1.2.2       stringi_1.7.5    munsell_0.5.0    crayon_1.4.2
+## [13] gtable_0.3.0     pkgconfig_2.0.3  rlang_0.4.12     rstudioapi_0.13 
+## [17] cli_3.1.0        DBI_1.1.1        yaml_2.2.1       xfun_0.28       
+## [21] fastmap_1.1.0    withr_2.4.2      stringr_1.4.0    knitr_1.36      
+## [25] generics_0.1.1   vctrs_0.3.8      sass_0.4.0       grid_4.1.2      
+## [29] tidyselect_1.1.1 glue_1.5.0       R6_2.5.1         fansi_0.5.0     
+## [33] rmarkdown_2.11   farver_2.1.0     purrr_0.3.4      magrittr_2.0.1  
+## [37] scales_1.1.1     ellipsis_0.3.2   htmltools_0.5.2  assertthat_0.2.1
+## [41] colorspace_2.0-2 labeling_0.4.2   utf8_1.2.2       stringi_1.7.5   
+## [45] munsell_0.5.0    crayon_1.4.2
 ```

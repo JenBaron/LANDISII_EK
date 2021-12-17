@@ -848,7 +848,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2021-12-15 14:45:31 PST"
+## [1] "2021-12-16 16:15:12 PST"
 ```
 
 ```r
@@ -858,7 +858,7 @@ git2r::repository()
 ```
 ## Local:    main C:/Users/jenbaron/Documents/UBC/Research/PhD Thesis/Collaborations/LANDIS II/Analysis/LANDISII_EK
 ## Remote:   main @ origin (https://github.com/JenBaron/LANDISII_EK.git)
-## Head:     [335392f] 2021-12-09: delete modern
+## Head:     [95a5cd3] 2021-12-15: display summaries
 ```
 
 ```r

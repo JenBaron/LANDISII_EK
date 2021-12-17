@@ -34,7 +34,7 @@ historical <- read.csv("data/BEC_HNFR_Tidy.csv") %>%
 # Tidy Data
 
 ```{r}
-compare_wide <- full_join(historical, modern, by = c("Zone", "Region_Name", "Aspect"),
+compare_wide <- left_join(historical, modern, by = c("Zone", "Region_Name", "Aspect"),
                     suffix = c(".H", ".M"),) %>%
   select(Zone, Region_Name, Aspect,
            mean_fs_BEC.H, mean_fs_BEC.M,
@@ -66,6 +66,7 @@ compare_tidy <- full_join(historical, modern) %>%
 ```{r}
 subzone.summary <- compare_tidy %>%
   group_by(Time, Zone) %>%
+  na.omit() %>%
   summarize(mean_fs = mean(mean_fs_BEC),
             min_fs = mean(min_fs_BEC),
             max_fs = mean(max_fs_BEC),
@@ -76,6 +77,7 @@ subzone.summary
 
 subzone.aspect.summary <- compare_tidy %>%
   group_by(Time, Zone, Aspect) %>%
+  na.omit() %>%
   summarize(mean_fs = mean(mean_fs_BEC.aspect),
             min_fs = mean(min_fs_BEC.aspect),
             max_fs = mean(max_fs_BEC.aspect),
