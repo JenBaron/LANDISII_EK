@@ -38,5 +38,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-1_Modern_paramaterization_files/
-2_Comparison_HNFR_files/
+1_Modern_paramaterization_files/figure-html
+2_Comparision_HNFR_files/figure-html
