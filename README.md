@@ -11,12 +11,12 @@ Values in modern.csv are based on the British Columbia Wildfire Service historic
 - Aspect - warm/cool aspect, as identified using the provided PEM layer
 - number_fires - Number of fire events within the zone and subregion, across both warm and cool aspects
 - number_fires.aspect- Number of fire events within the zone and region, subdivided into warm and cool aspect
-- mean_fs_BEC - Mean size (ha) of fire events occuring within the area of each zone and BEC subregion, across both warm and cool aspects
-- mean_fs_BEC.aspect - Mean size (ha) of fire events occuring within the area of each zone and BEC subregion, subdivided into warm and cool aspect
-- min_fs_BEC - Minimum size (ha) of fire events occuring within the area of each zone and BEC subregion, across both warm and cool aspects
-- min_fs_BEC.aspect - Minimum size (ha) of fire events occuring within the area of each zone and BEC subregion, subdivided into warm and cool aspect
-- max_fs_BEC - Maximum size (ha) of fire events occuring  within the area of each zone and BEC subregion, across both warm and cool aspects
-- max_fs_BEC.aspect - Maximum size (ha) of fire events occuring within the area of each zone and BEC subregion, subdivided into warm and cool aspect
+- mean_fs_BEC - Mean size (ha) of fire events occurring within the area of each zone and BEC subregion, across both warm and cool aspects
+- mean_fs_BEC.aspect - Mean size (ha) of fire events occurring within the area of each zone and BEC subregion, subdivided into warm and cool aspect
+- min_fs_BEC - Minimum size (ha) of fire events occurring within the area of each zone and BEC subregion, across both warm and cool aspects
+- min_fs_BEC.aspect - Minimum size (ha) of fire events occurring within the area of each zone and BEC subregion, subdivided into warm and cool aspect
+- max_fs_BEC - Maximum size (ha) of fire events occurring  within the area of each zone and BEC subregion, across both warm and cool aspects
+- max_fs_BEC.aspect - Maximum size (ha) of fire events occurring within the area of each zone and BEC subregion, subdivided into warm and cool aspect
 - FRI - Fire rotation interval (years); the time necessary for fire to burn the equivalent of the total area, across both warm and cool aspects
 - FRI.aspect - Fire rotation interval (years); the time necessary for fire to burn the equivalent of the total area, subdivided into warm and cool aspect
 
