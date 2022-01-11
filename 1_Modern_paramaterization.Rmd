@@ -1,14 +1,19 @@
 ---
 title: "Modern paramaterization"
 author: "Jen Baron"
-date: "December 15, 2021"
+date: "January 10, 2022"
 output:
   html_document:
     keep_md: yes
     number_sections: yes
     toc: yes
     toc_float: yes
+    code_folding: "hide"
 ---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+```
 
 # Load Packages
 
@@ -173,6 +178,8 @@ Modern <- rbind(Columbia_Modern, Elk_Modern, KootenayN_Modern, KootenayS_Modern,
   relocate(Zone, Region_Name, Aspect) %>%
   mutate_if(is.character,as.factor) %>%
   mutate_if(is.numeric, round, 0)
+
+Modern$FRI <- Modern$FRI %>% na_if(Inf) #convert infinite FRI values to NA
 ```
  
 ### Visualize
@@ -220,32 +227,45 @@ ggplot(data=Modern, aes(x=Region_Name, y=FRI)) +
 
 
 ```{r}
-ggplot(data = Modern, aes(x=Zone, y =mean_fs_BEC, fill=Aspect)) +
+ggplot(data = Modern, aes(x=Zone, y =number_fires, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Number of Fires", x = "") +
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = Modern, aes(x=Zone, y =mean_fs_BEC, fill=Aspect)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
+  scale_fill_manual(values=c("lightblue2", "lightpink2")) +
+  theme_bw() +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = Modern, aes(x=Zone, y =min_fs_BEC, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = Modern, aes(x=Zone, y =max_fs_BEC, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = Modern, aes(x=Zone, y =FRI, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
+  expand_limits(y=10000) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
@@ -385,6 +405,9 @@ Modern2 <- rbind(Columbia_Modern2, Elk_Modern2, KootenayN_Modern2, KootenayS_Mod
   relocate(Zone, Region_Name) %>%
   mutate_if(is.character,as.factor) %>%
   mutate_if(is.numeric, round, 0)
+
+Modern2$FRI <- Modern2$FRI %>% na_if(Inf) #convert infinite FRI values to NA
+
 ```
 
 ### Visualize
@@ -428,27 +451,38 @@ ggplot(data=Modern2, aes(x=Region_Name, y=FRI)) +
 ```
 
 ```{r}
+ggplot(data = Modern2, aes(x=Zone, y = number_fires)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Number of Fires", x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+
 ggplot(data = Modern2, aes(x=Zone, y =mean_fs_BEC)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = Modern2, aes(x=Zone, y =min_fs_BEC)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = Modern2, aes(x=Zone, y =max_fs_BEC)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = Modern2, aes(x=Zone, y =FRI)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```

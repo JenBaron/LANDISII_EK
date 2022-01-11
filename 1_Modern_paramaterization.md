@@ -8,33 +8,16 @@ output:
     number_sections: yes
     toc: yes
     toc_float: yes
+    code_folding: "hide"
 ---
+
+
 
 # Load Packages
 
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)
 ```
 
@@ -97,13 +80,6 @@ Columbia_Modern <- Columbia_Fire %>%
             max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
             area_burned = sum(SIZE_HA) %>% round(2),
             area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 Elk_Modern <- Elk_Fire %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(number_fires = n_distinct(FIRELABEL), 
@@ -115,13 +91,6 @@ Elk_Modern <- Elk_Fire %>%
             max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
             area_burned = sum(SIZE_HA) %>% round(2),
             area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 KootenayN_Modern <- KootenayN_Fire %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
@@ -133,13 +102,6 @@ KootenayN_Modern <- KootenayN_Fire %>%
             max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
             area_burned = sum(SIZE_HA) %>% round(2),
             area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 KootenayS_Modern <- KootenayS_Fire %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
@@ -151,13 +113,6 @@ KootenayS_Modern <- KootenayS_Fire %>%
             max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
             area_burned = sum(SIZE_HA) %>% round(2),
             area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 Purcell_Modern <- Purcell_Fire %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(number_fires = n_distinct(FIRELABEL), #number of unique fire events based on fire label
@@ -169,10 +124,6 @@ Purcell_Modern <- Purcell_Fire %>%
             max_fs_BEC = max(Calculate_Size_Ha) %>% round(2),
             area_burned = sum(SIZE_HA) %>% round(2),
             area_burned_BEC = sum(Calculate_Size_Ha) %>% round(2))
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
 ```
 ### Fire Rotation Interval
 
@@ -186,50 +137,18 @@ Calculate flammable area in each BEC subzone/aspect for FRI calculation
 Columbia_Fuel_Area <- Columbia_Fuel %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 Elk_Fuel_Area <- Elk_Fuel %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 KootenayN_Fuel_Area <- KootenayN_Fuel %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 KootenayS_Fuel_Area <- KootenayS_Fuel %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
-```
-
-```r
 Purcell_Fuel_Area <- Purcell_Fuel %>% 
   group_by(MAP_LABEL, fire_group) %>%
   summarize(total_area = sum(Calculate_Area_Ha) %>% round(2)) 
-```
-
-```
-## `summarise()` has grouped output by 'MAP_LABEL'. You can override using the `.groups` argument.
 ```
 
 
@@ -240,57 +159,23 @@ Columbia_Modern <- full_join(Columbia_Modern, Columbia_Fuel_Area) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Columbia")
-```
-
-```
-## Joining, by = c("MAP_LABEL", "fire_group")
-```
-
-```r
 Elk_Modern <- full_join(Elk_Modern, Elk_Fuel_Area) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
           Region = "Elk")
-```
-
-```
-## Joining, by = c("MAP_LABEL", "fire_group")
-```
-
-```r
 KootenayN_Modern <- full_join(KootenayN_Modern, KootenayN_Fuel_Area) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Kootenay North")
-```
-
-```
-## Joining, by = c("MAP_LABEL", "fire_group")
-```
-
-```r
 KootenayS_Modern <- full_join(KootenayS_Modern, KootenayS_Fuel_Area) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Kootenay South")
-```
-
-```
-## Joining, by = c("MAP_LABEL", "fire_group")
-```
-
-```r
 Purcell_Modern <- full_join(Purcell_Modern, Purcell_Fuel_Area) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Purcell")
-```
 
-```
-## Joining, by = c("MAP_LABEL", "fire_group")
-```
-
-```r
 Modern <- rbind(Columbia_Modern, Elk_Modern, KootenayN_Modern, KootenayS_Modern, Purcell_Modern) %>%
   ungroup() %>%
   rename(Zone = Region, Region_Name = MAP_LABEL, Aspect = fire_group) %>%
@@ -298,6 +183,8 @@ Modern <- rbind(Columbia_Modern, Elk_Modern, KootenayN_Modern, KootenayS_Modern,
   relocate(Zone, Region_Name, Aspect) %>%
   mutate_if(is.character,as.factor) %>%
   mutate_if(is.numeric, round, 0)
+
+Modern$FRI <- Modern$FRI %>% na_if(Inf) #convert infinite FRI values to NA
 ```
  
 ### Visualize
@@ -313,15 +200,7 @@ ggplot(data=Modern, aes(x=Region_Name, y=number_fires)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-```
-## Warning: Removed 17 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 ```r
 ggplot(data=Modern, aes(x=Region_Name, y=mean_fs_BEC)) +
@@ -332,13 +211,7 @@ ggplot(data=Modern, aes(x=Region_Name, y=mean_fs_BEC)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-
-## Warning: Removed 17 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-8-2.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-2.png)<!-- -->
 
 ```r
 ggplot(data=Modern, aes(x=Region_Name, y=min_fs_BEC)) +
@@ -350,13 +223,7 @@ ggplot(data=Modern, aes(x=Region_Name, y=min_fs_BEC)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-
-## Warning: Removed 17 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-8-3.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-3.png)<!-- -->
 
 ```r
 ggplot(data=Modern, aes(x=Region_Name, y=max_fs_BEC)) +
@@ -368,13 +235,7 @@ ggplot(data=Modern, aes(x=Region_Name, y=max_fs_BEC)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-
-## Warning: Removed 17 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-8-4.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-4.png)<!-- -->
 
 ```r
 ggplot(data=Modern, aes(x=Region_Name, y=FRI)) +
@@ -386,89 +247,70 @@ ggplot(data=Modern, aes(x=Region_Name, y=FRI)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-```
-## Warning: Removed 18 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-8-5.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-5.png)<!-- -->
 
 
+
+```r
+ggplot(data = Modern, aes(x=Zone, y =number_fires, fill=Aspect)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
+  scale_fill_manual(values=c("lightblue2", "lightpink2")) +
+  theme_bw() +
+  labs(y= "Number of Fires", x = "") +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 ```r
 ggplot(data = Modern, aes(x=Zone, y =mean_fs_BEC, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 17 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 17 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-10-2.png)<!-- -->
 
 ```r
 ggplot(data = Modern, aes(x=Zone, y =min_fs_BEC, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 17 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 17 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-2.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-10-3.png)<!-- -->
 
 ```r
 ggplot(data = Modern, aes(x=Zone, y =max_fs_BEC, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 17 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 17 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-3.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-10-4.png)<!-- -->
 
 ```r
 ggplot(data = Modern, aes(x=Zone, y =FRI, fill=Aspect)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("lightblue2", "lightpink2")) +
   theme_bw() +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
+  expand_limits(y=10000) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 27 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 27 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-9-4.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-10-5.png)<!-- -->
 
 ## Subzone
 
@@ -586,57 +428,23 @@ Columbia_Modern2 <- full_join(Columbia_Modern2, Columbia_Fuel_Area2) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(0),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Columbia")
-```
-
-```
-## Joining, by = "MAP_LABEL"
-```
-
-```r
 Elk_Modern2 <- full_join(Elk_Modern2, Elk_Fuel_Area2) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
           Region = "Elk")
-```
-
-```
-## Joining, by = "MAP_LABEL"
-```
-
-```r
 KootenayN_Modern2 <- full_join(KootenayN_Modern2, KootenayN_Fuel_Area2) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Kootenay North")
-```
-
-```
-## Joining, by = "MAP_LABEL"
-```
-
-```r
 KootenayS_Modern2 <- full_join(KootenayS_Modern2, KootenayS_Fuel_Area2) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Kootenay South")
-```
-
-```
-## Joining, by = "MAP_LABEL"
-```
-
-```r
 Purcell_Modern2 <- full_join(Purcell_Modern2, Purcell_Fuel_Area2) %>%
   mutate(FRI.percent = (area_burned_BEC/total_area)*100 %>% round(2),
          FRI = years / (area_burned_BEC/total_area) %>% round(2),
          Region = "Purcell")
-```
 
-```
-## Joining, by = "MAP_LABEL"
-```
-
-```r
 Modern2 <- rbind(Columbia_Modern2, Elk_Modern2, KootenayN_Modern2, KootenayS_Modern2, Purcell_Modern2) %>%
   ungroup() %>%
   rename(Zone = Region, Region_Name = MAP_LABEL) %>%
@@ -644,6 +452,8 @@ Modern2 <- rbind(Columbia_Modern2, Elk_Modern2, KootenayN_Modern2, KootenayS_Mod
   relocate(Zone, Region_Name) %>%
   mutate_if(is.character,as.factor) %>%
   mutate_if(is.numeric, round, 0)
+
+Modern2$FRI <- Modern2$FRI %>% na_if(Inf) #convert infinite FRI values to NA
 ```
 
 ### Visualize
@@ -658,15 +468,7 @@ ggplot(data=Modern2, aes(x=Region_Name, y=number_fires)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-```
-## Warning: Removed 6 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 ```r
 ggplot(data=Modern2, aes(x=Region_Name, y=mean_fs_BEC)) +
@@ -676,13 +478,7 @@ ggplot(data=Modern2, aes(x=Region_Name, y=mean_fs_BEC)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-
-## Warning: Removed 6 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-14-2.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-2.png)<!-- -->
 
 ```r
 ggplot(data=Modern2, aes(x=Region_Name, y=min_fs_BEC)) +
@@ -693,13 +489,7 @@ ggplot(data=Modern2, aes(x=Region_Name, y=min_fs_BEC)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-
-## Warning: Removed 6 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-14-3.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-3.png)<!-- -->
 
 ```r
 ggplot(data=Modern2, aes(x=Region_Name, y=max_fs_BEC)) +
@@ -710,13 +500,7 @@ ggplot(data=Modern2, aes(x=Region_Name, y=max_fs_BEC)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-
-## Warning: Removed 6 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-14-4.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-4.png)<!-- -->
 
 ```r
 ggplot(data=Modern2, aes(x=Region_Name, y=FRI)) +
@@ -728,82 +512,63 @@ ggplot(data=Modern2, aes(x=Region_Name, y=FRI)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-5.png)<!-- -->
+
+
+```r
+ggplot(data = Modern2, aes(x=Zone, y = number_fires)) +
+  geom_boxplot(outlier.shape=NA) +
+  geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Number of Fires", x = "") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
 ```
-## Warning: Ignoring unknown parameters: stat
 
-## Warning: Removed 6 rows containing missing values (geom_col).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-14-5.png)<!-- -->
-
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 ```r
 ggplot(data = Modern2, aes(x=Zone, y =mean_fs_BEC)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 6 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 6 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-16-2.png)<!-- -->
 
 ```r
 ggplot(data = Modern2, aes(x=Zone, y =min_fs_BEC)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 6 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 6 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-2.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-16-3.png)<!-- -->
 
 ```r
 ggplot(data = Modern2, aes(x=Zone, y =max_fs_BEC)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 6 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 6 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-3.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-16-4.png)<!-- -->
 
 ```r
 ggplot(data = Modern2, aes(x=Zone, y =FRI)) +
   geom_boxplot(outlier.shape=NA) +
   geom_jitter(size=1, alpha=0.5) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 10 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 10 rows containing missing values (geom_point).
-```
-
-![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-15-4.png)<!-- -->
+![](1_Modern_paramaterization_files/figure-html/unnamed-chunk-16-5.png)<!-- -->
 
 # Combine
 
@@ -848,7 +613,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2021-12-16 16:15:12 PST"
+## [1] "2022-01-10 16:50:49 PST"
 ```
 
 ```r
@@ -858,7 +623,7 @@ git2r::repository()
 ```
 ## Local:    main C:/Users/jenbaron/Documents/UBC/Research/PhD Thesis/Collaborations/LANDIS II/Analysis/LANDISII_EK
 ## Remote:   main @ origin (https://github.com/JenBaron/LANDISII_EK.git)
-## Head:     [95a5cd3] 2021-12-15: display summaries
+## Head:     [46e6525] 2021-12-17: Omit NA values
 ```
 
 ```r

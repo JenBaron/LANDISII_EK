@@ -3,8 +3,8 @@
 "2","Columbia","ESSFdk2",14,40,0,274,4050
 "3","Columbia","ESSFdkp",6,9,0,23,2700
 "4","Columbia","ESSFdkw",8,25,0,118,4050
-"5","Columbia","ESSFmmp",3,0,0,0,Inf
-"6","Columbia","ESSFmmw",1,0,0,0,Inf
+"5","Columbia","ESSFmmp",3,0,0,0,NA
+"6","Columbia","ESSFmmw",1,0,0,0,NA
 "7","Columbia","ICHmk5",7,55,1,198,4050
 "8","Columbia","IDFdk5",24,62,0,613,2025
 "9","Columbia","IDFdm2",7,37,0,261,1012
@@ -35,7 +35,7 @@
 "34","Kootenay North","ESSFwmp",2,19,0,60,300
 "35","Kootenay North","ESSFwmw",2,70,3,168,135
 "36","Kootenay North","ICHmk5",6,119,7,495,540
-"37","Kootenay North","IDFdm2",2,5,3,6,Inf
+"37","Kootenay North","IDFdm2",2,5,3,6,NA
 "38","Kootenay North","IMAun",11,19,0,177,176
 "39","Kootenay North","MSdk",39,292,0,7633,324
 "40","Kootenay North","MSdw",4,88,0,272,810
@@ -52,7 +52,7 @@
 "51","Kootenay South","ICHdm",80,113,0,1643,405
 "52","Kootenay South","ICHdw1",12,103,0,703,1157
 "53","Kootenay South","ICHmk4",6,162,1,480,324
-"54","Kootenay South","ICHmw2",2,1,0,2,Inf
+"54","Kootenay South","ICHmw2",2,1,0,2,NA
 "55","Kootenay South","ICHxw",2,5,3,7,8100
 "56","Kootenay South","IDFdm2",88,55,0,1189,2025
 "57","Kootenay South","IDFxk",1,8,4,12,81

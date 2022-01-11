@@ -1,14 +1,20 @@
 ---
 title: "Comparison (Modern & Historical)"
 author: "Jen Baron"
-date: "December 15, 2021"
+date: "January 10, 2022"
 output:
   html_document:
     keep_md: yes
     number_sections: yes
     toc: yes
     toc_float: yes
+    code_folding: "hide"
 ---
+
+
+```{r include = FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+```
 
 # Load Packages
 
@@ -62,6 +68,7 @@ compare_tidy <- full_join(historical, modern) %>%
          "mean_fs_BEC", "mean_fs_BEC.aspect", "min_fs_BEC", 
          "min_fs_BEC.aspect", "max_fs_BEC", "max_fs_BEC.aspect", 
          "FRI", "FRI.aspect") 
+#mutate_if(is.integer,as.numeric)
 ```
 ```{r}
 subzone.summary <- compare_tidy %>%
@@ -98,6 +105,7 @@ ggplot(data=(compare_tidy %>% na.omit(mean_fs_BEC)),
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
@@ -107,6 +115,7 @@ ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC)),
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
@@ -114,6 +123,7 @@ ggplot(data=(compare_tidy %>% na.omit(max_fs_BEC)),
        aes(x=reorder(Region_Name, -max_fs_BEC), y=max_fs_BEC)) +
   geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
   theme_bw() +
@@ -123,6 +133,7 @@ ggplot(data=(compare_tidy %>% na.omit(FRI)),
        aes(x=reorder(Region_Name, -FRI), y=FRI)) +
   geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
   theme_bw() +
@@ -132,28 +143,35 @@ ggplot(data=(compare_tidy %>% na.omit(FRI)),
 ```{r}
 ggplot(data = compare_tidy, aes(x=Zone, y =mean_fs_BEC, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme_bw()
 
 ggplot(data = compare_tidy, aes(x=Zone, y =min_fs_BEC, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw()
 
 ggplot(data = compare_tidy, aes(x=Zone, y =max_fs_BEC, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme_bw()
 
 ggplot(data = compare_tidy, aes(x=Zone, y =FRI, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   theme_bw()
 ```
+
+
+
 
 ## Subzone & Aspect
 
@@ -198,33 +216,37 @@ ggplot(data=(compare_tidy %>% na.omit(FRI.aspect)),
 ```{r}
 ggplot(data = compare_tidy, aes(x=Zone, y =mean_fs_BEC.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
   theme_bw() +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = compare_tidy, aes(x=Zone, y =min_fs_BEC.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = compare_tidy, aes(x=Zone, y =max_fs_BEC.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 
 ggplot(data = compare_tidy, aes(x=Zone, y =FRI.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```

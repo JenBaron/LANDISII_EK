@@ -1,12 +1,12 @@
 "","Zone","Region_Name","Aspect","mean_fs_BEC.H","mean_fs_BEC.M","mean_fs_BEC.aspect.H","mean_fs_BEC.aspect.M","min_fs_BEC.H","min_fs_BEC.M","min_fs_BEC.aspect.H","min_fs_BEC.aspect.M","max_fs_BEC.H","max_fs_BEC.M","max_fs_BEC.aspect.H","max_fs_BEC.aspect.M","FRI.H","FRI.M","FRI.aspect.H","FRI.aspect.M"
 "1","Columbia","ESSFdk2","warm",100,40,70,31,10,0,5,0,2000,274,300,207,150,4050,100,4050
 "2","Columbia","ESSFdk2","cool",100,40,50,10,10,0,1,0,2000,274,100,62,150,4050,250,2700
-"3","Columbia","ESSFdkp","warm",100,9,50,0,10,0,1,0,2000,23,1000,0,400,2700,100,Inf
+"3","Columbia","ESSFdkp","warm",100,9,50,0,10,0,1,0,2000,23,1000,0,400,2700,100,NA
 "4","Columbia","ESSFdkp","cool",100,9,30,9,10,0,0,0,2000,23,250,23,400,2700,250,2700
 "5","Columbia","ESSFdkw","warm",100,25,50,11,10,0,1,0,2000,118,1000,75,400,4050,100,2700
 "6","Columbia","ESSFdkw","cool",100,25,30,13,10,0,0,1,2000,118,250,41,400,4050,250,4050
-"7","Columbia","ESSFmmw","warm",100,0,50,0,10,0,1,0,2000,0,1000,0,400,Inf,100,Inf
-"8","Columbia","ESSFmmw","cool",100,0,30,0,10,0,0,0,2000,0,250,0,400,Inf,250,Inf
+"7","Columbia","ESSFmmw","warm",100,0,50,0,10,0,1,0,2000,0,1000,0,400,NA,100,NA
+"8","Columbia","ESSFmmw","cool",100,0,30,0,10,0,0,0,2000,0,250,0,400,NA,250,NA
 "9","Columbia","ICHmk5","warm",10,55,70,32,10,1,5,0,5000,198,1000,132,150,4050,50,2700
 "10","Columbia","ICHmk5","cool",10,55,70,21,10,1,1,0,5000,198,250,78,150,4050,70,8100
 "11","Columbia","ICHmw1","warm",10,NA,70,NA,10,NA,5,NA,5000,NA,1000,NA,150,NA,50,NA
@@ -39,7 +39,7 @@
 "38","Purcell","ESSFwm2","cool",100,55,30,26,10,0,0,0,2000,208,300,119,400,2025,400,2025
 "39","Purcell","ESSFwm4","warm",100,NA,50,NA,10,NA,5,NA,2000,NA,1000,NA,150,NA,200,NA
 "40","Purcell","ESSFwm4","cool",100,NA,30,NA,10,NA,1,NA,2000,NA,300,NA,150,NA,400,NA
-"41","Purcell","ESSFwmp","warm",100,12,50,0,10,0,1,0,2000,29,1000,0,400,8100,200,Inf
+"41","Purcell","ESSFwmp","warm",100,12,50,0,10,0,1,0,2000,29,1000,0,400,8100,200,NA
 "42","Purcell","ESSFwmp","cool",100,12,30,12,10,0,0,0,2000,29,300,28,400,8100,400,8100
 "43","Purcell","ESSFwmw","warm",100,26,70,9,10,1,5,0,2000,105,1000,51,150,4050,200,2700
 "44","Purcell","ESSFwmw","cool",100,26,50,12,10,1,1,0,2000,105,300,71,150,4050,400,4050

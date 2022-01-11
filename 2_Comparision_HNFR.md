@@ -8,33 +8,17 @@ output:
     number_sections: yes
     toc: yes
     toc_float: yes
+    code_folding: "hide"
 ---
+
+
+
 
 # Load Packages
 
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)
 ```
 
@@ -86,10 +70,7 @@ compare_tidy <- full_join(historical, modern) %>%
          "mean_fs_BEC", "mean_fs_BEC.aspect", "min_fs_BEC", 
          "min_fs_BEC.aspect", "max_fs_BEC", "max_fs_BEC.aspect", 
          "FRI", "FRI.aspect") 
-```
-
-```
-## Joining, by = c("Time", "Zone", "Region_Name", "Aspect", "mean_fs_BEC", "mean_fs_BEC.aspect", "min_fs_BEC", "min_fs_BEC.aspect", "max_fs_BEC", "max_fs_BEC.aspect", "FRI", "FRI.aspect")
+#mutate_if(is.integer,as.numeric)
 ```
 
 ```r
@@ -102,18 +83,6 @@ subzone.summary <- compare_tidy %>%
             FRI = mean(FRI)) %>%
   arrange(Zone) %>%
   mutate_if(is.numeric, round, 0)
-```
-
-```
-## `summarise()` has grouped output by 'Time'. You can override using the `.groups` argument.
-```
-
-```
-## `mutate_if()` ignored the following grouping variables:
-## Column `Time`
-```
-
-```r
 subzone.summary
 ```
 
@@ -123,15 +92,15 @@ subzone.summary
 ##    Time       Zone           mean_fs min_fs max_fs   FRI
 ##    <fct>      <fct>            <dbl>  <dbl>  <dbl> <dbl>
 ##  1 Historical Columbia            51      8   2420   222
-##  2 Modern     Columbia            57      1    396   Inf
+##  2 Modern     Columbia            70      2    494  1948
 ##  3 Historical Elk                 68      9   2583   266
 ##  4 Modern     Elk                103      1   1952   597
 ##  5 Historical Kootenay North      69      9   2714   246
-##  6 Modern     Kootenay North     126      4   1894   Inf
+##  6 Modern     Kootenay North     137      4   2066   315
 ##  7 Historical Kootenay South      47      8   2655   190
-##  8 Modern     Kootenay South      87      2   1413   Inf
+##  8 Modern     Kootenay South      89      2   1452  1048
 ##  9 Historical Purcell             76      9   2500   257
-## 10 Modern     Purcell            108      3    491  2451
+## 10 Modern     Purcell            111      4    503  2303
 ```
 
 ```r
@@ -144,18 +113,6 @@ subzone.aspect.summary <- compare_tidy %>%
             FRI = mean(FRI)) %>%
   arrange(Zone, Aspect) %>%
   mutate_if(is.numeric, round, 0)
-```
-
-```
-## `summarise()` has grouped output by 'Time', 'Zone'. You can override using the `.groups` argument.
-```
-
-```
-## `mutate_if()` ignored the following grouping variables:
-## Columns `Time`, `Zone`
-```
-
-```r
 subzone.aspect.summary
 ```
 
@@ -165,25 +122,25 @@ subzone.aspect.summary
 ##    Time       Zone           Aspect mean_fs min_fs max_fs   FRI
 ##    <fct>      <fct>          <fct>    <dbl>  <dbl>  <dbl> <dbl>
 ##  1 Historical Columbia       cool        47      1    205   222
-##  2 Modern     Columbia       cool        25      1    184   Inf
+##  2 Modern     Columbia       cool        29      1    218  1903
 ##  3 Historical Columbia       warm        55      3    690   222
-##  4 Modern     Columbia       warm        34      0    241   Inf
+##  4 Modern     Columbia       warm        46      1    321  2004
 ##  5 Historical Elk            cool        34      0    523   266
 ##  6 Modern     Elk            cool        59      0   1518   575
 ##  7 Historical Elk            warm        52      2   2350   266
 ##  8 Modern     Elk            warm        25      0    280   622
 ##  9 Historical Kootenay North cool        60      1    571   246
-## 10 Modern     Kootenay North cool        63      0   1168   Inf
+## 10 Modern     Kootenay North cool        68      0   1274   315
 ## 11 Historical Kootenay North warm        77      3   2571   246
-## 12 Modern     Kootenay North warm        43      2    569   Inf
+## 12 Modern     Kootenay North warm        47      1    620   315
 ## 13 Historical Kootenay South cool        28      1    186   190
-## 14 Modern     Kootenay South cool        47      0   1042   Inf
+## 14 Modern     Kootenay South cool        49      0   1097  1313
 ## 15 Historical Kootenay South warm        36      3    300   190
 ## 16 Modern     Kootenay South warm        27      0    436   753
 ## 17 Historical Purcell        cool        40      1    455   257
 ## 18 Modern     Purcell        cool        53      5    251  2491
 ## 19 Historical Purcell        warm        60      3   1775   257
-## 20 Modern     Purcell        warm        47      2    232  2409
+## 20 Modern     Purcell        warm        49      2    245  2093
 ```
 
 # Visualize
@@ -198,15 +155,12 @@ ggplot(data=(compare_tidy %>% na.omit(mean_fs_BEC)),
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 ```r
 ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC)), 
@@ -215,118 +169,88 @@ ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC)),
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-6-2.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-2.png)<!-- -->
 
 ```r
 ggplot(data=(compare_tidy %>% na.omit(max_fs_BEC)), 
        aes(x=reorder(Region_Name, -max_fs_BEC), y=max_fs_BEC)) +
   geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-6-3.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-3.png)<!-- -->
 
 ```r
 ggplot(data=(compare_tidy %>% na.omit(FRI)), 
        aes(x=reorder(Region_Name, -FRI), y=FRI)) +
   geom_col(stat="identity", aes(fill=Time), position = position_dodge(preserve = "single")) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   labs(x = "") +
   facet_grid(Zone~., scales="free_y") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-6-4.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-4.png)<!-- -->
 
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =mean_fs_BEC, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme_bw()
 ```
 
-```
-## Warning: Removed 12 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 12 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =min_fs_BEC, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw()
 ```
 
-```
-## Warning: Removed 12 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 12 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-2.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-2.png)<!-- -->
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =max_fs_BEC, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme_bw()
 ```
 
-```
-## Warning: Removed 12 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 12 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-3.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-3.png)<!-- -->
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =FRI, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=1, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   theme_bw()
 ```
 
-```
-## Warning: Removed 20 rows containing non-finite values (stat_boxplot).
-```
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-4.png)<!-- -->
 
-```
-## Warning: Removed 20 rows containing missing values (geom_point).
-```
 
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-7-4.png)<!-- -->
+
 
 ## Subzone & Aspect
 
@@ -342,11 +266,7 @@ ggplot(data=(compare_tidy %>% na.omit(mean_fs_BEC.aspect)),
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 ```r
 ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC.aspect)), 
@@ -359,11 +279,7 @@ ggplot(data=(compare_tidy %>% na.omit(min_fs_BEC.aspect)),
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-2.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-2.png)<!-- -->
 
 ```r
 ggplot(data=(compare_tidy %>% na.omit(max_fs_BEC.aspect)), 
@@ -376,11 +292,7 @@ ggplot(data=(compare_tidy %>% na.omit(max_fs_BEC.aspect)),
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-3.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-3.png)<!-- -->
 
 ```r
 ggplot(data=(compare_tidy %>% na.omit(FRI.aspect)), 
@@ -393,88 +305,60 @@ ggplot(data=(compare_tidy %>% na.omit(FRI.aspect)),
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Ignoring unknown parameters: stat
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-8-4.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-4.png)<!-- -->
 
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =mean_fs_BEC.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
   theme_bw() +
+  labs(y= "Mean Fire Size (ha)", x = "") +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 17 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 17 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =min_fs_BEC.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
+  labs(y= "Minimum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 17 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 17 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-2.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-10-2.png)<!-- -->
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =max_fs_BEC.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
+  labs(y= "Maximum Fire Size (ha)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 17 rows containing non-finite values (stat_boxplot).
-
-## Warning: Removed 17 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-3.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-10-3.png)<!-- -->
 
 ```r
 ggplot(data = compare_tidy, aes(x=Zone, y =FRI.aspect, fill=Time)) +
   geom_boxplot(outlier.shape=NA) +
-  geom_jitter(size=1, alpha=0.5) +
+  geom_point(pch=21,position = position_jitterdodge(), size=0.8, alpha=0.5, stroke=1) +
   scale_fill_manual(values=c("darkgoldenrod4", "goldenrod2")) +
-  facet_grid(.~Aspect, scales="free_y") +
+  facet_grid(.~Aspect) +
+  labs(y= "Fire Rotation Interval (years)", x = "") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-```
-## Warning: Removed 27 rows containing non-finite values (stat_boxplot).
-```
-
-```
-## Warning: Removed 27 rows containing missing values (geom_point).
-```
-
-![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-9-4.png)<!-- -->
+![](2_Comparision_HNFR_files/figure-html/unnamed-chunk-10-4.png)<!-- -->
 
 
  
@@ -498,7 +382,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2021-12-16 16:15:41 PST"
+## [1] "2022-01-10 16:49:39 PST"
 ```
 
 ```r
@@ -508,7 +392,7 @@ git2r::repository()
 ```
 ## Local:    main C:/Users/jenbaron/Documents/UBC/Research/PhD Thesis/Collaborations/LANDIS II/Analysis/LANDISII_EK
 ## Remote:   main @ origin (https://github.com/JenBaron/LANDISII_EK.git)
-## Head:     [95a5cd3] 2021-12-15: display summaries
+## Head:     [46e6525] 2021-12-17: Omit NA values
 ```
 
 ```r

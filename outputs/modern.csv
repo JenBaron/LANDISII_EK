@@ -4,13 +4,13 @@
 "3","Columbia","ESSFdk2","cool",14,12,40,10,0,0,274,62,4050,2700
 "4","Columbia","ESSFdk2","warm",14,13,40,31,0,0,274,207,4050,4050
 "5","Columbia","ESSFdkp","cool",6,6,9,9,0,0,23,23,2700,2700
-"6","Columbia","ESSFdkp","warm",6,2,9,0,0,0,23,0,2700,Inf
+"6","Columbia","ESSFdkp","warm",6,2,9,0,0,0,23,0,2700,NA
 "7","Columbia","ESSFdkw","cool",8,7,25,13,0,1,118,41,4050,4050
 "8","Columbia","ESSFdkw","warm",8,7,25,11,0,0,118,75,4050,2700
-"9","Columbia","ESSFmmp","cool",3,3,0,0,0,0,0,0,Inf,Inf
-"10","Columbia","ESSFmmp","warm",3,1,0,0,0,0,0,0,Inf,Inf
-"11","Columbia","ESSFmmw","cool",1,1,0,0,0,0,0,0,Inf,Inf
-"12","Columbia","ESSFmmw","warm",1,1,0,0,0,0,0,0,Inf,Inf
+"9","Columbia","ESSFmmp","cool",3,3,0,0,0,0,0,0,NA,NA
+"10","Columbia","ESSFmmp","warm",3,1,0,0,0,0,0,0,NA,NA
+"11","Columbia","ESSFmmw","cool",1,1,0,0,0,0,0,0,NA,NA
+"12","Columbia","ESSFmmw","warm",1,1,0,0,0,0,0,0,NA,NA
 "13","Columbia","ICHmk5","cool",7,7,55,21,1,0,198,78,4050,8100
 "14","Columbia","ICHmk5","warm",7,5,55,32,1,0,198,132,4050,2700
 "15","Columbia","IDFdk5","cool",24,22,62,18,0,0,613,388,2025,2700
@@ -71,8 +71,8 @@
 "70","Kootenay North","ESSFwmw","warm",2,2,70,26,3,0,168,78,135,147
 "71","Kootenay North","ICHmk5","cool",6,6,119,74,7,0,495,432,540,540
 "72","Kootenay North","ICHmk5","warm",6,6,119,23,7,0,495,63,540,675
-"73","Kootenay North","IDFdm2","cool",2,2,5,3,3,3,6,3,Inf,Inf
-"74","Kootenay North","IDFdm2","warm",2,1,5,3,3,3,6,3,Inf,Inf
+"73","Kootenay North","IDFdm2","cool",2,2,5,3,3,3,6,3,NA,NA
+"74","Kootenay North","IDFdm2","warm",2,1,5,3,3,3,6,3,NA,NA
 "75","Kootenay North","IMAun","cool",11,11,19,15,0,0,177,146,176,193
 "76","Kootenay North","IMAun","warm",11,6,19,4,0,0,177,31,176,63
 "77","Kootenay North","MSdk","cool",39,38,292,258,0,0,7633,7523,324,300
@@ -104,7 +104,7 @@
 "103","Kootenay South","ICHdw1","warm",12,7,103,4,0,0,703,12,1157,2700
 "104","Kootenay South","ICHmk4","cool",6,6,162,52,1,0,480,282,324,386
 "105","Kootenay South","ICHmk4","warm",6,6,162,81,1,0,480,233,324,279
-"106","Kootenay South","ICHmw2","cool",2,2,1,1,0,0,2,2,Inf,Inf
+"106","Kootenay South","ICHmw2","cool",2,2,1,1,0,0,2,2,NA,NA
 "107","Kootenay South","ICHxw","cool",2,2,5,5,3,3,7,7,8100,8100
 "108","Kootenay South","IDFdm2","cool",88,81,55,28,0,0,1189,505,2025,2700
 "109","Kootenay South","IDFdm2","warm",88,71,55,27,0,0,1189,1061,2025,1157
@@ -117,7 +117,7 @@
 "116","Kootenay South","MSdw","cool",65,65,165,123,0,0,5446,5216,405,405
 "117","Kootenay South","MSdw","warm",65,51,165,21,0,0,5446,290,405,476
 "118","Kootenay South","ESSFdkp","warm",6,NA,7,NA,0,NA,33,NA,4050,NA
-"119","Kootenay South","ICHmw2","warm",2,NA,1,NA,0,NA,2,NA,Inf,NA
+"119","Kootenay South","ICHmw2","warm",2,NA,1,NA,0,NA,2,NA,NA,NA
 "120","Kootenay South","ICHxw","warm",2,NA,5,NA,3,NA,7,NA,8100,NA
 "121","Kootenay South","IMAun","cool",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "122","Kootenay South","IMAun","warm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -140,7 +140,7 @@
 "139","Purcell","ESSFwm2","cool",16,15,55,26,0,0,208,119,2025,2025
 "140","Purcell","ESSFwm2","warm",16,15,55,23,0,0,208,104,2025,2025
 "141","Purcell","ESSFwmp","cool",4,4,12,12,0,0,29,28,8100,8100
-"142","Purcell","ESSFwmp","warm",4,2,12,0,0,0,29,0,8100,Inf
+"142","Purcell","ESSFwmp","warm",4,2,12,0,0,0,29,0,8100,NA
 "143","Purcell","ESSFwmw","cool",10,10,26,12,1,0,105,71,4050,4050
 "144","Purcell","ESSFwmw","warm",10,10,26,9,1,0,105,51,4050,2700
 "145","Purcell","ICHdm","cool",8,8,63,55,0,0,416,412,405,405
