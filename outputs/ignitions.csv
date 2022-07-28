@@ -1,82 +1,82 @@
-"","Region","MAP_LABEL","AREA","MIN","MAX","MEAN","MEDIAN"
-"1","Purcell","ICHmw2",3e+07,9e-04,0.002,0.002,0.002
-"2","Purcell","IMAun",8e+08,0,0.02,0.001,6e-04
-"3","Purcell","ESSFwmp",2e+08,8e-06,0.004,7e-04,5e-04
-"4","Purcell","ESSFdkp",5e+08,0,0.02,0.002,0.001
-"5","Purcell","ESSFwh2",1e+08,2e-04,0.003,0.001,0.001
-"6","Purcell","ESSFwm2",3e+08,3e-05,0.005,0.001,6e-04
-"7","Purcell","ESSFwmw",2e+08,2e-05,0.004,0.001,7e-04
-"8","Purcell","MSdk",4e+08,2e-05,0.04,0.007,0.005
-"9","Purcell","ESSFdkw",6e+08,0,0.02,0.003,0.001
-"10","Purcell","MSdw",1e+08,4e-04,0.01,0.008,0.008
-"11","Purcell","ESSFdk1",1e+08,4e-04,0.01,0.005,0.005
-"12","Purcell","ICHdm",6e+07,9e-04,0.002,0.002,0.002
-"13","Purcell","IDFdm2",9e+07,0.004,0.02,0.01,0.01
-"14","Purcell","ESSFdk2",9e+08,0,0.03,0.004,0.002
-"15","Purcell","ESSFmmw",2e+08,0,0.005,0.001,8e-04
-"16","Purcell","ESSFmm3",4e+08,0,0.01,0.002,0.001
-"17","Purcell","ICHmk5",5e+07,2e-04,0.02,0.01,0.01
-"18","Purcell","IDFxk",3e+05,0.01,0.02,0.01,0.01
-"19","Purcell","IDFdk5",8e+07,0.005,0.05,0.02,0.02
-"20","Purcell","ESSFmmp",2e+08,0,0.005,9e-04,7e-04
-"21","Kootenay South","ICHdm",1e+09,8e-04,0.03,0.007,0.006
-"22","Kootenay South","ESSFwmw",4e+08,3e-04,0.02,0.003,0.003
-"23","Kootenay South","ESSFwm4",1e+09,3e-04,0.02,0.005,0.004
-"24","Kootenay South","ESSFwmp",2e+08,3e-04,0.01,0.003,0.002
-"25","Kootenay South","ESSFdkp",9e+07,6e-04,0.01,0.003,0.002
-"26","Kootenay South","IMAun",3e+07,4e-04,0.01,0.003,0.002
-"27","Kootenay South","ESSFdk1",1e+09,4e-04,0.04,0.007,0.005
-"28","Kootenay South","ESSFdkw",3e+08,6e-04,0.03,0.004,0.003
-"29","Kootenay South","MSdk",1e+07,0.003,0.01,0.006,0.006
-"30","Kootenay South","ICHmk4",5e+07,0.002,0.008,0.003,0.003
-"31","Kootenay South","ICHmw2",1e+07,0.002,0.003,0.002,0.002
-"32","Kootenay South","ESSFwh2",1e+08,7e-04,0.01,0.003,0.002
-"33","Kootenay South","ESSFwm2",2e+08,3e-04,0.01,0.002,0.002
-"34","Kootenay South","MSdw",2e+09,4e-04,0.06,0.01,0.01
-"35","Kootenay South","IDFdm2",2e+09,0.003,0.08,0.03,0.02
-"36","Kootenay South","ESSFwm1",1e+08,0.002,0.02,0.004,0.003
-"37","Kootenay South","IDFxx2",9e+08,0.007,0.08,0.03,0.03
-"38","Kootenay South","ICHxw",1e+07,0.004,0.01,0.007,0.006
-"39","Kootenay South","ICHdw1",2e+08,0.001,0.02,0.008,0.007
-"40","Kootenay South","IDFxk",2e+05,0.02,0.02,0.02,0.02
-"41","Kootenay South","ESSFdk2",7e+07,0.002,0.01,0.005,0.004
-"42","Kootenay North","ESSFwm1",1e+07,0.001,0.002,0.002,0.002
-"43","Kootenay North","ESSFdkp",5e+08,0,0.01,0.002,0.001
-"44","Kootenay North","IMAun",4e+08,0,0.01,0.001,7e-04
-"45","Kootenay North","ESSFwmw",9e+06,0.001,0.002,0.002,0.002
-"46","Kootenay North","ESSFwmp",1e+07,0.001,0.002,0.002,0.002
-"47","Kootenay North","ESSFdk1",6e+07,0.006,0.02,0.01,0.009
-"48","Kootenay North","ESSFdkw",8e+08,0,0.02,0.003,0.002
-"49","Kootenay North","ESSFdk2",1e+09,0,0.01,0.003,0.002
-"50","Kootenay North","MSdk",8e+08,2e-05,0.02,0.007,0.006
-"51","Kootenay North","IDFdm2",7e+07,0.007,0.02,0.01,0.01
-"52","Kootenay North","MSdw",5e+07,0.006,0.02,0.01,0.01
-"53","Kootenay North","ICHmk5",1e+08,7e-04,0.01,0.006,0.005
-"54","Elk","ESSFdkp",4e+08,5e-05,0.01,0.002,0.001
-"55","Elk","ESSFdkw",1e+09,7e-05,0.01,0.002,0.001
-"56","Elk","IMAun",2e+08,3e-05,0.01,0.001,6e-04
-"57","Elk","ESSFwmp",6e+07,7e-04,0.008,0.003,0.003
-"58","Elk","ESSFwmw",2e+08,4e-04,0.01,0.003,0.003
-"59","Elk","MSdk",3e+08,6e-04,0.01,0.005,0.004
-"60","Elk","ICHmk4",6e+08,4e-04,0.01,0.005,0.004
-"61","Elk","ESSFdk1",2e+09,2e-04,0.01,0.002,0.002
-"62","Elk","ESSFwm1",6e+08,4e-04,0.01,0.004,0.003
-"63","Elk","ESSFdk2",7e+08,9e-05,0.01,0.003,0.002
-"64","Elk","ICHdm",4e+07,0.003,0.01,0.008,0.008
-"65","Elk","MSdw",1e+09,4e-04,0.01,0.005,0.004
-"66","Elk","IDFdm2",8e+06,0.003,0.01,0.006,0.004
-"67","Columbia","IDFdm2",7e+07,0.009,0.02,0.01,0.01
-"68","Columbia","MSdw",3e+07,0.008,0.02,0.01,0.01
-"69","Columbia","ICHmk5",3e+08,0.003,0.03,0.01,0.009
-"70","Columbia","ESSFmmw",3e+06,0.004,0.01,0.008,0.008
-"71","Columbia","IMAun",2e+07,0.002,0.01,0.006,0.006
-"72","Columbia","ESSFdkp",8e+07,9e-04,0.01,0.006,0.006
-"73","Columbia","ESSFdkw",2e+08,8e-04,0.02,0.007,0.006
-"74","Columbia","ESSFdk2",4e+08,6e-04,0.03,0.008,0.008
-"75","Columbia","MSdk",8e+08,3e-04,0.03,0.01,0.01
-"76","Columbia","IDFxk",4e+08,0.007,0.06,0.03,0.02
-"77","Columbia","IDFdk5",7e+08,0.005,0.06,0.02,0.01
-"78","Columbia","ESSFdk1",6e+06,0.008,0.01,0.01,0.01
-"79","Columbia","ICHmw1",1e+07,0.003,0.01,0.007,0.007
-"80","Columbia","ESSFmm3",6e+06,0.004,0.01,0.008,0.008
-"81","Columbia","ESSFmmp",3e+06,0.002,0.01,0.007,0.006
+"","Scenario","Region","BEC","AREA","MIN","MAX","MEAN","MEDIAN"
+"1","Modern","Purcell","ICHmw2",3e+07,9e-04,0.002,0.002,0.002
+"2","Modern","Purcell","IMAun",8e+08,0,0.02,0.001,6e-04
+"3","Modern","Purcell","ESSFwmp",2e+08,8e-06,0.004,7e-04,5e-04
+"4","Modern","Purcell","ESSFdkp",5e+08,0,0.02,0.002,0.001
+"5","Modern","Purcell","ESSFwh2",1e+08,2e-04,0.003,0.001,0.001
+"6","Modern","Purcell","ESSFwm2",3e+08,3e-05,0.005,0.001,6e-04
+"7","Modern","Purcell","ESSFwmw",2e+08,2e-05,0.004,0.001,7e-04
+"8","Modern","Purcell","MSdk",4e+08,2e-05,0.04,0.007,0.005
+"9","Modern","Purcell","ESSFdkw",6e+08,0,0.02,0.003,0.001
+"10","Modern","Purcell","MSdw",1e+08,4e-04,0.01,0.008,0.008
+"11","Modern","Purcell","ESSFdk1",1e+08,4e-04,0.01,0.005,0.005
+"12","Modern","Purcell","ICHdm",6e+07,9e-04,0.002,0.002,0.002
+"13","Modern","Purcell","IDFdm2",9e+07,0.004,0.02,0.01,0.01
+"14","Modern","Purcell","ESSFdk2",9e+08,0,0.03,0.004,0.002
+"15","Modern","Purcell","ESSFmmw",2e+08,0,0.005,0.001,8e-04
+"16","Modern","Purcell","ESSFmm3",4e+08,0,0.01,0.002,0.001
+"17","Modern","Purcell","ICHmk5",5e+07,2e-04,0.02,0.01,0.01
+"18","Modern","Purcell","IDFxk",3e+05,0.01,0.02,0.01,0.01
+"19","Modern","Purcell","IDFdk5",8e+07,0.005,0.05,0.02,0.02
+"20","Modern","Purcell","ESSFmmp",2e+08,0,0.005,9e-04,7e-04
+"21","Modern","Kootenay South","ICHdm",1e+09,8e-04,0.03,0.007,0.006
+"22","Modern","Kootenay South","ESSFwmw",4e+08,3e-04,0.02,0.003,0.003
+"23","Modern","Kootenay South","ESSFwm4",1e+09,3e-04,0.02,0.005,0.004
+"24","Modern","Kootenay South","ESSFwmp",2e+08,3e-04,0.01,0.003,0.002
+"25","Modern","Kootenay South","ESSFdkp",9e+07,6e-04,0.01,0.003,0.002
+"26","Modern","Kootenay South","IMAun",3e+07,4e-04,0.01,0.003,0.002
+"27","Modern","Kootenay South","ESSFdk1",1e+09,4e-04,0.04,0.007,0.005
+"28","Modern","Kootenay South","ESSFdkw",3e+08,6e-04,0.03,0.004,0.003
+"29","Modern","Kootenay South","MSdk",1e+07,0.003,0.01,0.006,0.006
+"30","Modern","Kootenay South","ICHmk4",5e+07,0.002,0.008,0.003,0.003
+"31","Modern","Kootenay South","ICHmw2",1e+07,0.002,0.003,0.002,0.002
+"32","Modern","Kootenay South","ESSFwh2",1e+08,7e-04,0.01,0.003,0.002
+"33","Modern","Kootenay South","ESSFwm2",2e+08,3e-04,0.01,0.002,0.002
+"34","Modern","Kootenay South","MSdw",2e+09,4e-04,0.06,0.01,0.01
+"35","Modern","Kootenay South","IDFdm2",2e+09,0.003,0.08,0.03,0.02
+"36","Modern","Kootenay South","ESSFwm1",1e+08,0.002,0.02,0.004,0.003
+"37","Modern","Kootenay South","IDFxx2",9e+08,0.007,0.08,0.03,0.03
+"38","Modern","Kootenay South","ICHxw",1e+07,0.004,0.01,0.007,0.006
+"39","Modern","Kootenay South","ICHdw1",2e+08,0.001,0.02,0.008,0.007
+"40","Modern","Kootenay South","IDFxk",2e+05,0.02,0.02,0.02,0.02
+"41","Modern","Kootenay South","ESSFdk2",7e+07,0.002,0.01,0.005,0.004
+"42","Modern","Kootenay North","ESSFwm1",1e+07,0.001,0.002,0.002,0.002
+"43","Modern","Kootenay North","ESSFdkp",5e+08,0,0.01,0.002,0.001
+"44","Modern","Kootenay North","IMAun",4e+08,0,0.01,0.001,7e-04
+"45","Modern","Kootenay North","ESSFwmw",9e+06,0.001,0.002,0.002,0.002
+"46","Modern","Kootenay North","ESSFwmp",1e+07,0.001,0.002,0.002,0.002
+"47","Modern","Kootenay North","ESSFdk1",6e+07,0.006,0.02,0.01,0.009
+"48","Modern","Kootenay North","ESSFdkw",8e+08,0,0.02,0.003,0.002
+"49","Modern","Kootenay North","ESSFdk2",1e+09,0,0.01,0.003,0.002
+"50","Modern","Kootenay North","MSdk",8e+08,2e-05,0.02,0.007,0.006
+"51","Modern","Kootenay North","IDFdm2",7e+07,0.007,0.02,0.01,0.01
+"52","Modern","Kootenay North","MSdw",5e+07,0.006,0.02,0.01,0.01
+"53","Modern","Kootenay North","ICHmk5",1e+08,7e-04,0.01,0.006,0.005
+"54","Modern","Elk","ESSFdkp",4e+08,5e-05,0.01,0.002,0.001
+"55","Modern","Elk","ESSFdkw",1e+09,7e-05,0.01,0.002,0.001
+"56","Modern","Elk","IMAun",2e+08,3e-05,0.01,0.001,6e-04
+"57","Modern","Elk","ESSFwmp",6e+07,7e-04,0.008,0.003,0.003
+"58","Modern","Elk","ESSFwmw",2e+08,4e-04,0.01,0.003,0.003
+"59","Modern","Elk","MSdk",3e+08,6e-04,0.01,0.005,0.004
+"60","Modern","Elk","ICHmk4",6e+08,4e-04,0.01,0.005,0.004
+"61","Modern","Elk","ESSFdk1",2e+09,2e-04,0.01,0.002,0.002
+"62","Modern","Elk","ESSFwm1",6e+08,4e-04,0.01,0.004,0.003
+"63","Modern","Elk","ESSFdk2",7e+08,9e-05,0.01,0.003,0.002
+"64","Modern","Elk","ICHdm",4e+07,0.003,0.01,0.008,0.008
+"65","Modern","Elk","MSdw",1e+09,4e-04,0.01,0.005,0.004
+"66","Modern","Elk","IDFdm2",8e+06,0.003,0.01,0.006,0.004
+"67","Modern","Columbia","IDFdm2",7e+07,0.009,0.02,0.01,0.01
+"68","Modern","Columbia","MSdw",3e+07,0.008,0.02,0.01,0.01
+"69","Modern","Columbia","ICHmk5",3e+08,0.003,0.03,0.01,0.009
+"70","Modern","Columbia","ESSFmmw",3e+06,0.004,0.01,0.008,0.008
+"71","Modern","Columbia","IMAun",2e+07,0.002,0.01,0.006,0.006
+"72","Modern","Columbia","ESSFdkp",8e+07,9e-04,0.01,0.006,0.006
+"73","Modern","Columbia","ESSFdkw",2e+08,8e-04,0.02,0.007,0.006
+"74","Modern","Columbia","ESSFdk2",4e+08,6e-04,0.03,0.008,0.008
+"75","Modern","Columbia","MSdk",8e+08,3e-04,0.03,0.01,0.01
+"76","Modern","Columbia","IDFxk",4e+08,0.007,0.06,0.03,0.02
+"77","Modern","Columbia","IDFdk5",7e+08,0.005,0.06,0.02,0.01
+"78","Modern","Columbia","ESSFdk1",6e+06,0.008,0.01,0.01,0.01
+"79","Modern","Columbia","ICHmw1",1e+07,0.003,0.01,0.007,0.007
+"80","Modern","Columbia","ESSFmm3",6e+06,0.004,0.01,0.008,0.008
+"81","Modern","Columbia","ESSFmmp",3e+06,0.002,0.01,0.007,0.006

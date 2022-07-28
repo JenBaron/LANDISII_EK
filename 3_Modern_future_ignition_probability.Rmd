@@ -1,0 +1,178 @@
+---
+title: "Modern & future ignition probability"
+author: "Jen Baron"
+date: "February 23, 2022"
+output:
+  html_document:
+    keep_md: yes
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+    code_folding: "hide"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load Packages
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+# Moderns 
+
+## All Ignitions
+
+### Subzone
+
+```{r}
+Purcell_Ig <- read.csv("data/Ignitions_BEC_Purcell.csv") %>%
+  mutate(Region = "Purcell") %>%
+  mutate (Scenario = "Modern")
+
+KootenayS_Ig <- read.csv("data/Ignitions_BEC_Kootenay_South.csv") %>%
+  mutate(Region = "Kootenay South") %>%
+  mutate (Scenario = "Modern")
+
+KootenayN_Ig <- read.csv("data/Ignitions_BEC_Kootenay_North.csv") %>%
+  mutate(Region = "Kootenay North") %>%
+  mutate (Scenario = "Modern")
+
+Elk_Ig <- read.csv("data/Ignitions_BEC_Elk.csv") %>%
+  mutate(Region = "Elk") %>%
+  mutate (Scenario = "Modern")
+
+Columbia_Ig <- read.csv("data/Ignitions_BEC_Columbia.csv") %>%
+  mutate(Region = "Columbia") %>%
+  mutate (Scenario = "Modern")
+```
+
+
+```{r}
+Ignitions <- rbind(Purcell_Ig, KootenayS_Ig, KootenayN_Ig, Elk_Ig, Columbia_Ig) %>%
+  select(Scenario, Region, MAP_LABEL, AREA, MIN, MAX, MEAN, MEDIAN) %>%
+  mutate_if(is.numeric, signif, 1) %>%
+  rename(BEC = MAP_LABEL)
+```
+
+### Subzone & Aspect
+
+## Lightning & Unknown Ignitions
+
+### Subzone
+
+### Subzone & Aspect
+
+
+# Future
+
+RCP 4.5
+
+```{r}
+Purcell_Ig_45 <- read.csv("data/future_ignitions_rcp45_purcell.csv") %>%
+  mutate(Region = "Purcell") %>%
+  mutate (Scenario = "RCP4.5")
+
+KootenayS_Ig_45 <- read.csv("data/future_ignitions_rcp45_ks.csv") %>%
+  mutate(Region = "Kootenay South") %>%
+  mutate (Scenario = "RCP4.5")
+
+KootenayN_Ig_45 <- read.csv("data/future_ignitions_rcp45_kn.csv") %>%
+  mutate(Region = "Kootenay North") %>%
+  mutate (Scenario = "RCP4.5")
+
+Elk_Ig_45 <- read.csv("data/future_ignitions_rcp45_elk.csv") %>%
+  mutate(Region = "Elk") %>%
+  mutate (Scenario = "RCP4.5")
+
+Columbia_Ig_45 <- read.csv("data/future_ignitions_rcp45_columbia.csv") %>%
+  mutate(Region = "Columbia") %>%
+  mutate (Scenario = "RCP4.5")
+```
+
+
+```{r}
+Ignitions_45 <- rbind(Purcell_Ig_45, KootenayS_Ig_45, KootenayN_Ig_45, Elk_Ig_45, Columbia_Ig_45) %>%
+  select(Scenario, Region, MAP_LABEL, AREA, MIN, MAX, MEAN, MEDIAN) %>%
+  mutate_if(is.numeric, signif, 1) %>%
+  rename(BEC = MAP_LABEL)
+```
+
+
+RCP 8.5
+
+```{r}
+Purcell_Ig_85 <- read.csv("data/future_ignitions_rcp85_purcell.csv") %>%
+  mutate(Region = "Purcell") %>%
+  mutate (Scenario = "RCP8.5")
+
+KootenayS_Ig_85 <- read.csv("data/future_ignitions_rcp85_ks.csv") %>%
+  mutate(Region = "Kootenay South") %>%
+  mutate (Scenario = "RCP8.5")
+
+KootenayN_Ig_85 <- read.csv("data/future_ignitions_rcp85_kn.csv") %>%
+  mutate(Region = "Kootenay North") %>%
+  mutate (Scenario = "RCP8.5")
+
+Elk_Ig_85 <- read.csv("data/future_ignitions_rcp85_elk.csv") %>%
+  mutate(Region = "Elk") %>%
+  mutate (Scenario = "RCP8.5")
+
+Columbia_Ig_85 <- read.csv("data/future_ignitions_rcp85_columbia.csv") %>%
+  mutate(Region = "Columbia") %>%
+  mutate (Scenario = "RCP8.5")
+```
+
+
+```{r}
+Ignitions_85 <- rbind(Purcell_Ig_85, KootenayS_Ig_85, KootenayN_Ig_85, Elk_Ig_85, Columbia_Ig_85) %>%
+  select(Scenario, Region, MAP_LABEL, AREA, MIN, MAX, MEAN, MEDIAN) %>%
+  mutate_if(is.numeric, signif, 1) %>%
+  rename(BEC = MAP_LABEL)
+```
+
+
+# Visualize
+
+```{r}
+Ignitions.3 <- rbind(Ignitions, Ignitions_45, Ignitions_85)
+```
+
+```{r}
+ggplot(Ignitions.3, aes(x=Scenario, y=MEAN)) +
+  geom_boxplot(outlier.shape=NA, alpha=0)+
+  geom_jitter(aes(col=BEC))+
+  ylab(bquote('Mean Annual Ignition Density '~km^-2)) +
+  theme_classic()
+
+ggplot(Ignitions.3, aes(x=Scenario, y=MEAN)) +
+  geom_boxplot(outlier.shape=NA, alpha=0)+
+  geom_jitter(aes(col=BEC))+
+  ylab(bquote('Mean Annual Ignition Density '~km^-2)) +
+  facet_grid(Region~.) +
+  theme_classic()
+```
+
+
+
+# Save Outputs
+
+```{r}
+write.csv(Ignitions, "outputs/ignitions.csv")
+write.csv(Ignitions_45, "outputs/ignitions_rcp45.csv")
+write.csv(Ignitions_85, "outputs/ignitions_rcp85.csv")
+write.csv(Ignitions.3, "outputs/ignitions_scenarios.csv")
+```
+ 
+ 
+ 
+ 
+# Reproducibility
+
+```{r}
+Sys.time()
+git2r::repository()
+sessionInfo()
+```
